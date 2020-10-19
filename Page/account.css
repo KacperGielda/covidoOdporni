@@ -1,0 +1,114 @@
+main {
+  padding-top: 125px;
+  color: #606060;
+  height: 500px;
+  display: flex;
+}
+
+.headerTxt {
+  color: #606060;
+  margin-bottom: 40px;
+  font-size: 38px;
+}
+
+/* Wszystkie inputy i labele */
+
+.input {
+  width: 250px;
+  height: 50px;
+  border: 1px solid #707070;
+  border-radius: 10px;
+  outline: none;
+  font-size: 20px;
+  text-align: left;
+  color: #606060;
+  padding-left: 10px;
+  margin-bottom: 20px;
+}
+
+.uniLabel {
+  display: block;
+  color: #7e7e7e;
+  float: left;
+  width: 20%;
+  margin-right: 5%;
+  font-size: 24px;
+}
+
+/* Divy */
+
+.account-div {
+  margin-left: 4%;
+  width: 40%;
+}
+
+.adress-div {
+  width: 40%;
+}
+
+.submit-btns {
+  margin-top: 10px;
+}
+
+/* Buttony */
+
+.edit-btn {
+  width: 110px;
+  height: 45px;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  font-size: 24px;
+  color: white;
+  background: #3734a2;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.edit-btn:hover {
+  background: #42419c;
+}
+
+.submit-btn {
+  width: 150px;
+  height: 45px;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  font-size: 24px;
+  color: white;
+  background: #3734a2;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.submit-btn:hover {
+  background: #42419c;
+}
+
+.delete-btn {
+  width: 150px;
+  height: 45px;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  font-size: 24px;
+  color: white;
+  background: red;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.delete-btn:hover {
+  background: rgb(233, 0, 0);
+}
+
+/* Stopka */
+
+footer {
+  position: fixed;
+  bottom: 0;
+  background-image: url(images/Account.png);
+  width: 100%;
+  height: 310px;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Logowanie</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="auth-page.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <!-- <script src='main.js'></script> -->
+  </head>
+
+  <body>
+    <header>
+      <p>Nazwa strony</p>
+      <ul>
+        <li><a href="auth-page.html" class="aktualne">Zaloguj się</a></li>
+        <li><a href="innaStrona.html">Ogłoszenia</a></li>
+        <li><a href="about.html">O nas</a></li>
+        <li><a href="home-a.html">Strona główna</a></li>
+        <li><button class="add-ad-btn">+ Dodaj nowe ogłoszenie</button></li>
+      </ul>
+    </header>
+    <main>
+        <h1 class="headerTxt">Zaloguj się do "nazwa"</h1>
+        <div class="flex-div">
+            <form>
+                <label for="login" class="uniLabel">Nazwa użytkownika / E-mail:</label>
+                <input id="login" type="text" class="username-input">
+                <br>
+                <label for="password" class="uniLabel">Hasło:</label>
+                <input id="password" type="password" class="password-input">
+                <br>
+                <input type="submit" id="loginSubmitBtn" class="login-btn" value="Zaloguj się">
+            </form>
+        </div>
+        <a href="register-page.html" class="register-a">Nie masz jeszcze konta? Zarejestruj się!</a>
+    </main>
+  </body>
+</html>

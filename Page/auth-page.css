@@ -1,0 +1,61 @@
+main {
+  padding-top: 150px;
+  height: 600px;
+  justify-content: center;
+}
+
+.headerTxt {
+  color: #606060;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* Inputy i labele */
+
+.username-input,
+.password-input {
+  width: 400px;
+  height: 50px;
+  border: 1px solid #707070;
+  border-radius: 10px;
+  outline: none;
+  font-size: 20px;
+  text-align: left;
+  color: #606060;
+  padding-left: 10px;
+}
+
+.uniLabel {
+  display: block;
+  color: #7e7e7e;
+}
+
+.login-btn {
+  width: 413px;
+  height: 50px;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  font-size: 24px;
+  color: white;
+  background: #3734a2;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.login-btn:hover {
+  background: #42419c;
+}
+
+.register-a {
+  color: #7e7e7e;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+}
+
+.flex-div {
+  display: flex;
+  justify-content: center;
+}
