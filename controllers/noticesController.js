@@ -7,6 +7,20 @@ const filterNotice = (notice) => {
     const { _id, __v, locationChoice, ...filteredNotice } = notice._doc;
     return filteredNotice;
 };
+const makeFilters = (filters) => {
+    validFilters = {};
+    if (!filters.helps) filters.helps = ["other"];
+    for (key in filters) {
+        if (filters[key] === "" || filters[key] === "all") continue;
+        if (key === "search" || key === "localization") {
+            validFilters[key] = new RegExp(filters[key]);
+        } else {
+            validFilters[key] = filters[key];
+        }
+    }
+    console.log(validFilters);
+    return validFilters;
+};
 
 module.exports = {
     createNotice: (noticeDat, callback) => {
@@ -24,11 +38,24 @@ module.exports = {
             callback(filterNotice(notice));
         });
     },
-    getNotices: (page, userId, callback) => {
+    getNotices: (page, userId, userFilters, callback) => {
         const model = noticesCreator.model;
-        model.find({ isSuspended: false, authorID: { $ne: userId } }, null, { skip: (page - 1) * 10, limit: 10 }, (err, notices) => {
-            if (err) console.log(err);
-            callback(notices);
+        const noticesFound = {};
+
+        filters = makeFilters(userFilters);
+
+        model.find({ authorID: userId }, null, { limit: 10 }, (err, userNotices) => {
+            noticesFound.user = userNotices;
+            model.find(
+                { isSuspended: false, authorID: { $ne: userId }, ...filters },
+                null,
+                { skip: (page - 1) * 10, limit: 10 },
+                (err, notices) => {
+                    if (err) console.log(err);
+                    noticesFound.notUser = notices;
+                    callback(noticesFound);
+                }
+            );
         });
     },
 };
