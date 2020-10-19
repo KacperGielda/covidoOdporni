@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<a href="./index">Strona Główna</a>
+<a href="./profileEditor">Edytuj</a>
+<div id="profile"></div>
+<h3>Twoje ogłoszenia</h3>
+<div id="notices"></div>
+<body>
+    <script>
+        const profile = document.getElementById('profile');
+        const noticesDiv = document.getElementById('notices');
+        window.addEventListener("pageshow", () => {
+            fetch('/getUser').then(res => res.json()).then(data => {
+                let noticesIds = [];
+                if (data) {
+                    for (key in data) {
+                        if(key === "notices"){ 
+                            noticesIds = (data[key]);
+                            continue;
+                        }
+                        profile.innerHTML += `<br><b>${key}</b>: ${data[key]}`;
+                    }
+                }
+                if (noticesIds.length != 0){
+                   noticesIds.forEach((element,index) => {     
+                       fetch(`/notices/getFromId?noticeId=${element}`).then(res => res.json()).then(data =>{
+                            noticesDiv.innerHTML += "<hr>";
+                           for(key in data){
+                               noticesDiv.innerHTML += `<br> ${key}: ${data[key]}`;
+                           }
+                       });
+                   })
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
