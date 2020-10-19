@@ -1,0 +1,20 @@
+main {
+  padding-top: 100px;
+  color: #606060;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+}
+
+.headerTxt {
+  color: #606060;
+  font-size: 45px;
+  text-align: center;
+}
+
+.aboutTxt {
+  color: #606060;
+  font-size: 28px;
+  text-align: center;
+  padding: 0 6%;
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Rejestracja</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="register-page.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <!-- <script src='main.js'></script> -->
+  </head>
+
+  <body>
+    <header>
+      <p>Nazwa strony</p>
+      <ul>
+        <li><a href="auth-page.html" class="aktualne">Zaloguj się</a></li>
+        <li><a href="innaStrona.html">Ogłoszenia</a></li>
+        <li><a href="about.html">O nas</a></li>
+        <li><a href="home-a.html">Strona główna</a></li>
+        <li><button class="add-ad-btn">+ Dodaj nowe ogłoszenie</button></li>
+      </ul>
+    </header>
+    <main>
+        <h1 class="headerTxt">Zarejestruj się do "nazwa"</h1>
+        <div class="flex-div">
+            <form>
+                <label for="login" class="uniLabel">Nazwa użytkownika</label>
+                <input id="login" type="text" class="registerInput">
+                <br>
+                <label for="email" class="uniLabel">Email</label>
+                <input id="email" type="text" class="registerInput">
+                <p class="correct-email">Wprowadziłeś niepoprawny e-mail!</p>
+                <br>
+                <label for="password" class="uniLabel">Hasło:</label>
+                <input id="password" type="password" class="registerInput">
+                <br>
+                <label for="passwordConf" class="uniLabel">Powtórz hasło:</label>
+                <input id="passwordConf" type="password" class="registerInput">
+                <p class="correct-password">Wprowadzone hasło nie jest takie samo jak pierwotne!</p>
+                <br>
+
+                <div class="name-div"> 
+                    <label for="email" class="uniLabel">Imię</label>
+                    <input id="email" type="text" class="nameInput">
+                </div>
+                <div name-div>
+                    <label for="email" class="uniLabel">Nazwisko</label>
+                    <input id="email" type="text" class="nameInput">
+                </div>
+
+                <br>
+                <input type="submit" id="registerSubmitBtn" class="login-btn" value="Zarejestruj się">
+            </form>
+        </div>
+    </main>
+  </body>
+</html>
