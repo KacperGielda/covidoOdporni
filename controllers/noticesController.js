@@ -1,7 +1,6 @@
 const noticesCreator = require("../creators/noticesCreator");
 const usersController = require("./usersController");
 const mongoose = require("mongoose");
-const { model } = require("../creators/noticesCreator");
 
 const filterNotice = (notice) => {
     const { _id, __v, locationChoice, ...filteredNotice } = notice._doc;
@@ -9,11 +8,12 @@ const filterNotice = (notice) => {
 };
 const makeFilters = (filters) => {
     validFilters = {};
-    if (!filters.helps) filters.helps = ["other"];
     for (key in filters) {
         if (filters[key] === "" || filters[key] === "all") continue;
-        if (key === "search" || key === "localization") {
-            validFilters[key] = new RegExp(filters[key]);
+        if (key === "search") {
+            validFilters.title = { $regex: new RegExp(filters[key].trim(), "i") };
+        } else if (key === "localization") {
+            validFilters.adress = { $regex: new RegExp(filters[key].trim(), "i") };
         } else {
             validFilters[key] = filters[key];
         }
