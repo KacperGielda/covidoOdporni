@@ -13,11 +13,13 @@
         <input type="search" id="localization" name="localization" placeholder="lokalizacja">
         <label for="type">Typ ogłoszenia</label>
         <select name="type" id="type">
+            <option value="all">Wszystkie</option>
             <option value="giveHelp">Chęć pomocy</option>
             <option value="needHelp">Prośba o pomoc</option>
         </select>
         <label for="price">cena</label>
             <select name="price" id="price">
+                <option value="all">Wszystkie</option>
                 <option value="coverCost">Pokrycie kosztów</option>
                 <option value="free">Za darmo</option>
                 <option value="negotiated">Do uzgodnienia</option>
@@ -38,13 +40,28 @@
     </form>
     <hr>
     <div id="notices"></div>
+    
+    <div class="lastPage">
+        Ostatnia Strona
+    </div>
+    <div class="nextPage">
+        Kolejna Strona
+    </div>
     <script>
         const form = document.querySelector("form");
-        form.addEventListener("submit", (e) => {
+        const nextPage = document.querySelector(".nextPage");
+        const lastPage = document.querySelector(".lastPage");
+        let page = 1;
+        const getNotices = (e) => {
             e.preventDefault(); // zapobiega pokazaniu jsona
-            fetch('/notices/search', { method: 'POST', body: new URLSearchParams(new FormData(event.target)), redirect: 'follow', }) // "body: new URLSearchParams(new FormData(event.target))" przekazuje dane formularza do requesta, trzeba to zrobić ze względu na "preventDefault()"
+            fetch(`/notices/search?page=${page}`, { method: 'POST', body: new URLSearchParams(new FormData(form)), redirect: 'follow', }) // "body: new URLSearchParams(new FormData(event.target))" przekazuje dane formularza do requesta, trzeba to zrobić ze względu na "preventDefault()"
                 .then(res => res.json()).then(data => console.log(data))
-        });
+        };
+
+        form.addEventListener("submit", e => getNotices(e));
+        window.addEventListener("pageshow", e => getNotices(e));
+        nextPage.addEventListener("click", e => { page++; getNotices(e);});
+        lastPage.addEventListener("click", e => { page--; getNotices(e);});
     </script>
 </body>
 </html>

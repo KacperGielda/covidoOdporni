@@ -5,9 +5,10 @@ const router = express.Router();
 
 router.post("/search", (req, res) => {
     let { page } = req.query;
-    if (!page) page = 1;
+    if (!page || page < 1) page = 1;
     currUserId = req.session.user;
-    noticesController.getNotices(page, currUserId, (notices) => res.json(notices));
+    filters = req.body;
+    noticesController.getNotices(page, currUserId, filters, (notices) => res.json(notices));
 });
 
 router.post("/add", (req, res) => {
