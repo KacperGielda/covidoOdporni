@@ -49,20 +49,46 @@
                 <input id="passwordConf" type="password" class="registerInput">
                 <p class="correct-password">Wprowadzone hasło nie jest takie samo jak pierwotne!</p>
                 <br>
-
-                <div class="name-div"> 
-                    <label for="email" class="uniLabel">Imię</label>
-                    <input id="email" type="text" class="nameInput">
-                </div>
-                <div name-div>
-                    <label for="email" class="uniLabel">Nazwisko</label>
-                    <input id="email" type="text" class="nameInput">
-                </div>
+                <label for="name" class="uniLabel">Imię</label>
+                <input id="name" type="text" class="nameInput">
+                <br>
+                <label for="lastName" class="uniLabel">Nazwisko</label>
+                <input id="lastName" type="text" class="nameInput">
+  
 
                 <br>
                 <input type="submit" id="registerSubmitBtn" class="login-btn" value="Zarejestruj się">
             </form>
         </div>
     </main>
+    <script>
+      const type = document.getElementById('type');
+      const nameLabel = document.querySelector('label[for=name]');
+      const lastName = document.getElementById('lastName');
+      const lastNameLabel = document.querySelector('label[for=lastName]');
+      type.addEventListener('change', (e) => {
+          value = type.value;
+          if (value == "person") {
+              nameLabel.innerHTML = "Imię";
+              lastName.style.display = "block";
+              lastNameLabel.style.display = "block";
+          } else {
+              nameLabel.innerHTML = "Nazwa Firmy";
+              lastName.style.display = "none";
+              lastNameLabel.style.display = "none";
+          }
+      })
+
+      const form = document.querySelector("form");
+      form.addEventListener("submit", (e) => {
+          e.preventDefault(); // zapobiega pokazaniu jsona
+          fetch('/register-page', { method: 'POST', body: new URLSearchParams(new FormData(event.target)), redirect: 'follow', }) // "body: new URLSearchParams(new FormData(event.target))" przekazuje dane formularza do requesta, trzeba to zrobić ze względu na "preventDefault()"
+              .then(res => {
+                  if (res.redirected) return window.location.href = res.url; // Jeżeli wprowadzone dane są poprawne przekieruje na stronę główną
+                  else res.json().then(data => console.log(data)) // Niepoprawne dane są opisane w zwróconym obiekcie "data" 
+              })
+      });
+
+  </script>
   </body>
 </html>
