@@ -23,42 +23,40 @@
     <main>
         <h1 class="headerTxt">Zarejestruj się do "nazwa"</h1>
         <div class="flex-div">
-            <form>
-                <label for="type" class="uniLabel">Typ Konta</label>
-                <select name="type" id="type" class="typeInput">
-                    <option value="person">Osoba</option>
-                    <option value="corp/org">Firma/Organizacja</option>
-                </select>
-                <label for="login" class="uniLabel">Nazwa użytkownika:</label>
-                <input id="login" type="text" class="registerInput">
-                <br>
-                <label for="email" class="uniLabel">Email:</label>
-                <input id="email" type="text" class="registerInput">
-                <p class="correct-email">Wprowadziłeś niepoprawny e-mail!</p>
-                <br>
-                <label for="adress" class="uniLabel">Adres:</label>
-                <input id="adress" type="text" class="adressInput">
-                <br>
-                <label for="email" class="uniLabel">Numer telefonu:</label>
-                <input id="email" type="text" class="phoneNmbInput">
-                <br>
-                <label for="password" class="uniLabel">Hasło:</label>
-                <input id="password" type="password" class="registerInput">
-                <br>
-                <label for="passwordConf" class="uniLabel">Powtórz hasło:</label>
-                <input id="passwordConf" type="password" class="registerInput">
-                <p class="correct-password">Wprowadzone hasło nie jest takie samo jak pierwotne!</p>
-                <br>
-                <label for="name" class="uniLabel">Imię</label>
-                <input id="name" type="text" class="nameInput">
-                <br>
-                <label for="lastName" class="uniLabel">Nazwisko</label>
-                <input id="lastName" type="text" class="nameInput">
-  
+          <form>
+            <label for="type" class="uniLabel">Typ Konta</label>
+            <select name="type" id="type" class="typeInput">
+                <option value="person">Osoba</option>
+                <option value="corp/org">Firma/Organizacja</option>
+            </select>
+            <label for="name" class="uniLabel">Imię</label>
+            <input type="text" id="name" name="name" class="registerInput">
 
-                <br>
-                <input type="submit" id="registerSubmitBtn" class="login-btn" value="Zarejestruj się">
-            </form>
+            <label for="lastName" class="uniLabel">Nazwisko</label>
+            <input type="text" id="lastName" name="lastName" class="registerInput">
+
+            <label for="login" class="uniLabel">Login</label>
+            <input type="text" id="login" name="login" class="registerInput">
+
+            <label for="email" class="uniLabel">E-mail</label>
+            <input type="email" id="email" name="email" class="registerInput">
+
+            <label for="phoneNumber" class="uniLabel">Numer Telefonu</label>
+            <input type="phoneNumber" id="phoneNumber" name="phoneNumber" class="registerInput">
+
+            <label for="adress" class="uniLabel">Adres</label>
+            <input type="adress" id="adress" name="adress" class="registerInput">
+
+            <label for="password" class="uniLabel">Hasło</label>
+            <input type="password" id="password" name="password" class="registerInput">
+
+            <label for="repeat-password" class="uniLabel">Powtórz hasło</label>
+            <input type="password" id="repeat-password" name="repeatedPassword" class="registerInput">
+
+            <br>
+
+            <input type="submit" value="Zarejestruj" class="login-btn">
+        </form>
         </div>
     </main>
     <script>
@@ -82,7 +80,7 @@
       const form = document.querySelector("form");
       form.addEventListener("submit", (e) => {
           e.preventDefault(); // zapobiega pokazaniu jsona
-          fetch('/register-page', { method: 'POST', body: new URLSearchParams(new FormData(event.target)), redirect: 'follow', }) // "body: new URLSearchParams(new FormData(event.target))" przekazuje dane formularza do requesta, trzeba to zrobić ze względu na "preventDefault()"
+          fetch('/register', { method: 'POST', body: new URLSearchParams(new FormData(event.target)), redirect: 'follow', }) // "body: new URLSearchParams(new FormData(event.target))" przekazuje dane formularza do requesta, trzeba to zrobić ze względu na "preventDefault()"
               .then(res => {
                   if (res.redirected) return window.location.href = res.url; // Jeżeli wprowadzone dane są poprawne przekieruje na stronę główną
                   else res.json().then(data => console.log(data)) // Niepoprawne dane są opisane w zwróconym obiekcie "data" 
