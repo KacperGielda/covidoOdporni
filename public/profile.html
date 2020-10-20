@@ -11,10 +11,14 @@
 <div id="profile"></div>
 <h3>Twoje ogłoszenia</h3>
 <div id="notices"></div>
+
 <body>
     <script>
         const profile = document.getElementById('profile');
         const noticesDiv = document.getElementById('notices');
+
+
+
         window.addEventListener("pageshow", () => {
             fetch('/getUser').then(res => res.json()).then(data => {
                 let noticesIds = [];
@@ -29,11 +33,55 @@
                 }
                 if (noticesIds.length != 0){
                    noticesIds.forEach((element,index) => {     
-                       fetch(`/notices/getFromId?noticeId=${element}`).then(res => res.json()).then(data =>{
+                       fetch(`/notices/getById?noticeId=${element}`).then(res => res.json()).then(data =>{
+                           if(!data) return;
+                           const {isSuspended} = data;
                             noticesDiv.innerHTML += "<hr>";
                            for(key in data){
                                noticesDiv.innerHTML += `<br> ${key}: ${data[key]}`;
                            }
+                           if (isSuspended){
+                            noticesDiv.innerHTML +=`<button class="susspend" id="${data._id}">Wznów</button>`;
+                           } else {
+                            noticesDiv.innerHTML +=`<button class="susspend" id="${data._id}">Zawieś</button>`; 
+                           }
+                           noticesDiv.innerHTML += 
+                           `
+                            <button class="delete" id="${element}">Usuń</button>
+                            <button class="edit" id="${element}">Edytuj</button>
+
+                           `;
+                           document.querySelectorAll(".susspend, .delete, .edit").forEach(element=>{
+                            element.addEventListener('click',(e)=>{
+                                const noticeId = e.target.id;
+                                const buttonClass = e.target.className;
+                                switch (buttonClass){
+                                    case "susspend":
+                                        fetch(`/notices/suspendById?noticeId=${noticeId}`, { method: "PUT", }).then(res => res.json())
+                                            .then(data => {
+                                                if (data.success){
+                                                    if(e.target.textContent === "Wznów") e.target.textContent = "Zawieś";
+                                                    else e.target.textContent = "Wznów";
+                                                    window.location.reload(true);
+                                                }
+                                            });
+                                        break;
+                                    case "delete":
+                                        fetch(`/notices/delete?noticeId=${noticeId}`, {method: "DELETE"}).then(res => res.json())
+                                            .then(data => {
+                                                if (data.success){
+                                                    if(e.target.textContent === "Wznów") e.target.textContent = "Zawieś";
+                                                    else e.target.textContent = "Wznów";
+                                                    window.location.reload(true);
+                                                }
+                                            });
+                                        break;
+                                    case "edit":
+                                        window.location.href = (`/noticeEditor?id=${noticeId}`);
+                                        break;
+                                }
+                            })
+                            })
                        });
                    })
                 }

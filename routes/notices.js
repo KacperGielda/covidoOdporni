@@ -3,6 +3,17 @@ const usersController = require("../controllers/UsersController");
 const noticesController = require("../controllers/noticesController");
 const router = express.Router();
 
+const belongsToUser = (userId, noticeId, callback) => {
+    let belongs = false;
+    if (!userId || !noticeId) callback(false);
+    usersController.getUser(userId, (user) => {
+        user.notices.forEach((element) => {
+            if (element == noticeId) belongs = true;
+        });
+        callback(belongs);
+    });
+};
+
 router.post("/search", (req, res) => {
     let { page } = req.query;
     if (!page || page < 1) page = 1;
@@ -35,9 +46,45 @@ router.post("/add", (req, res) => {
     }
 });
 
-router.get("/getFromId", (req, res) => {
+router.get("/getById", (req, res) => {
     const { noticeId } = req.query;
-    noticesController.getNotice(noticeId, (notice) => res.json(notice));
+    noticesController.getNotice(noticeId, (notice) => (notice ? res.json(notice) : res.json(null)));
 });
 
+router.put("/suspendById", (req, res) => {
+    const { noticeId } = req.query;
+    belongsToUser(req.session.user, noticeId, (belongs) => {
+        if (req.session.user && belongs) {
+            noticesController.susspend(noticeId, (msg) => {
+                res.json(msg);
+            });
+        } else res.redirect(403, "/index");
+    });
+});
+
+router.put("/update", (req, res) => {
+    const { id } = req.query;
+    belongsToUser(req.session.user, id, (belongs) => {
+        if (req.session.user && belongs) {
+            noticesController.updateNotice(id, req.body, (msg) => {
+                if (Object.keys(msg).length > 0) res.json(msg);
+                else res.redirect(301, "/profile");
+            });
+        } else res.redirect(403, "/index");
+    });
+});
+
+router.delete("/delete", (req, res) => {
+    const { noticeId } = req.query;
+    belongsToUser(req.session.user, noticeId, (belongs) => {
+        if (req.session.user && belongs) {
+            noticesController.delete(noticeId, (success) => {
+                if (success) {
+                    usersController.removeNotice(noticeId, req.session.user);
+                }
+                res.json({ success });
+            });
+        } else res.redirect(403, "/index");
+    });
+});
 module.exports = router;

@@ -3,7 +3,8 @@ const usersController = require("./usersController");
 const mongoose = require("mongoose");
 
 const filterNotice = (notice) => {
-    const { _id, __v, locationChoice, ...filteredNotice } = notice._doc;
+    if (!notice) return;
+    const { __v, ...filteredNotice } = notice._doc;
     return filteredNotice;
 };
 const makeFilters = (filters) => {
@@ -21,6 +22,27 @@ const makeFilters = (filters) => {
     console.log(validFilters);
     return validFilters;
 };
+const getNotice = (id, callback) => {
+    const model = noticesCreator.model;
+    model.findById(id, (err, notice) => {
+        if (err) return console.log(err);
+        callback(filterNotice(notice));
+    });
+};
+
+const updateNotice = (id, updatedData, callback) => {
+    const model = noticesCreator.model;
+    model.updateOne({ _id: id }, { $set: updatedData }, { context: "query" }, (err) => {
+        messages = {};
+        if (err) {
+            console.log(err);
+            for (let key in err.errors) {
+                messages[key] = err.errors[key].properties.message;
+            }
+        }
+        callback(messages);
+    });
+};
 
 module.exports = {
     createNotice: (noticeDat, callback) => {
@@ -31,13 +53,7 @@ module.exports = {
             callback(msg);
         });
     },
-    getNotice: (id, callback) => {
-        const model = noticesCreator.model;
-        model.findById(id, (err, notice) => {
-            if (err) return console.log(err);
-            callback(filterNotice(notice));
-        });
-    },
+    getNotice,
     getNotices: (page, userId, userFilters, callback) => {
         const model = noticesCreator.model;
         const noticesFound = {};
@@ -56,6 +72,29 @@ module.exports = {
                     callback(noticesFound);
                 }
             );
+        });
+    },
+    susspend: (id, callback) => {
+        let susspend;
+        getNotice(id, (notice) => {
+            if (notice) {
+                if (notice.isSuspended) susspend = false;
+                else susspend = true;
+                updateNotice(id, { isSuspended: susspend }, (msg) => {
+                    if (Object.keys(msg).length === 0) {
+                        callback({ success: true });
+                    } else callback({ success: false });
+                });
+            } else callback({ success: false });
+        });
+    },
+    updateNotice,
+    delete: (id, callback) => {
+        const model = noticesCreator.model;
+        model.findByIdAndDelete(id, (err, res) => {
+            if (res) {
+                callback(true);
+            } else callback(false);
         });
     },
 };

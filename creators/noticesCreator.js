@@ -84,7 +84,7 @@ const noticeSchema = new mongoose.Schema({
     },
 });
 
-noticeSchema.pre("findOneAndUpdate", function (next) {
+noticeSchema.pre("updateOne", function (next) {
     this.options.runValidators = true;
     next();
 });

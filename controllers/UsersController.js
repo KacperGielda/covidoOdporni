@@ -75,4 +75,13 @@ module.exports = {
             if (err) console.log(err);
         });
     },
+    removeNotice: (noticeId, userId) => {
+        UsersCollection.findOneAndUpdate(
+            { _id: mongoose.Types.ObjectId(userId) },
+            { $pull: { notices: mongoose.Types.ObjectId(noticeId) } },
+            (err, user) => {
+                if (err) console.log(err);
+            }
+        );
+    },
 };

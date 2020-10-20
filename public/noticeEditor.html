@@ -46,6 +46,50 @@
             <input type="submit" value="Zatwierdź">
     </form>
     <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const form = document.querySelector("form");
+
+        window.addEventListener("pageshow", ()=>{
+            const id = urlParams.get('id');
+            if (id) {
+                fetch(`/notices/getById?noticeId=${id}`).then(res=> res.json()).then(data=>{
+                    console.log(data);
+                    for(key in data){
+                        if(key == "helps"){
+                            data[key].forEach(element=>{
+                                form[element].checked = true;
+                            });
+                        }
+                        if (form[key]){
+                            form[key].value = data[key];
+                        }
+                        if (key == "adress" && data.locationChoice != "other"){
+                            form[key].value = "";
+                        }
+                    }
+                    form.addEventListener("submit", (e) => {
+                        e.preventDefault(); // zapobiega pokazaniu jsona
+                        fetch(`/notices/update?id=${id}`, { method: 'PUT', body: new URLSearchParams(new FormData(e.target),), redirect: 'follow', }) // "body: new URLSearchParams(new FormData(event.target))" przekazuje dane formularza do requesta, trzeba to zrobić ze względu na "preventDefault()"
+                            .then(res => {
+                                if (res.redirected) return window.location.href = res.url; // Jeżeli wprowadzone dane są poprawne przekieruje na stronę główną
+                                else res.json().then(data => console.log(data)) // Niepoprawne dane są opisane w zwróconym obiekcie "data" 
+                            });
+                    });
+                    
+                });
+            } else{
+                form.addEventListener("submit", (e) => {
+                    e.preventDefault(); // zapobiega pokazaniu jsona
+                    fetch('/notices/add', { method: 'POST', body: new URLSearchParams(new FormData(e.target)), redirect: 'follow', }) // "body: new URLSearchParams(new FormData(event.target))" przekazuje dane formularza do requesta, trzeba to zrobić ze względu na "preventDefault()"
+                        .then(res => {
+                            if (res.redirected) return window.location.href = res.url; // Jeżeli wprowadzone dane są poprawne przekieruje na stronę główną
+                            else res.json().then(data => console.log(data)) // Niepoprawne dane są opisane w zwróconym obiekcie "data" 
+                        })
+                });
+            }
+        });
+
         adressInput = document.getElementById('adress');
         AdressChoice = document.querySelectorAll('input[type=radio]');
         AdressChoice.forEach(choice => {
@@ -56,15 +100,8 @@
             })
         })
 
-        const form = document.querySelector("form");
-        form.addEventListener("submit", (e) => {
-            e.preventDefault(); // zapobiega pokazaniu jsona
-            fetch('/notices/add', { method: 'POST', body: new URLSearchParams(new FormData(event.target)), redirect: 'follow', }) // "body: new URLSearchParams(new FormData(event.target))" przekazuje dane formularza do requesta, trzeba to zrobić ze względu na "preventDefault()"
-                .then(res => {
-                    if (res.redirected) return window.location.href = res.url; // Jeżeli wprowadzone dane są poprawne przekieruje na stronę główną
-                    else res.json().then(data => console.log(data)) // Niepoprawne dane są opisane w zwróconym obiekcie "data" 
-                })
-        });
+        
+       
     </script>
 </body>
 
