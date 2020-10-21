@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" media="screen" href="account.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <!-- <script src='main.js'></script> -->
   </head>
 
   <body>
@@ -17,11 +16,11 @@
             <li><a href="home.html">Strona główna</a></li>
             <li><a href="about.html">O nas</a></li>
             <li><a href="innaStrona.html">Ogłoszenia</a></li>
-            <li class="aktualne">Moje konto
-                <ol>
+            <li class="aktualne" id="accountNav">Moje konto
+                <ol id="accountList">
                     <li class="fix1"><a href="account.html">Informacje</a></li>
                     <li><a href="">Powiadomienia</a></li>
-                    <li><a href="">Wyloguj</a></li>
+                    <li><a href="/logout" id="logoutBtn">Wyloguj</a></li>
                 </ol>
             </li>   
         </ul>
@@ -153,5 +152,6 @@
             });
         });
     </script>
+    <script src='navbar.js'></script>
   </body>
 </html>
