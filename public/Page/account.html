@@ -130,6 +130,10 @@
                             noticesIds = (data[key]);
                             continue;
                         }
+
+                        if (data.firm == undefined) {
+                            data.firm = 'Brak';
+                        }
                     }
                     name.value = data.name;
                     lastName.value = data.lastName;
