@@ -70,6 +70,7 @@ ul li ol {
   width: 108px;
   padding: 0;
   margin: 0;
+  right: 68px;
 }
 
 ul li:hover ol {
@@ -79,7 +80,7 @@ ul li:hover ol {
 ol li {
   background-color: white;
   padding: 16px 0;
-  width: 108px;
+  width: 180px;
   font-size: initial;
 }
 
