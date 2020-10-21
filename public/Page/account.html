@@ -62,14 +62,12 @@
                 <input name="adress" id="adress" type="text" class="input">
                 <br>
                 <div class="submit-btns">
-                    <input type="submit" value="Edytuj" class="edit-btn" id="editBtn">
-                    <input type="submit" value="Zatwierdź" class="submit-btn">
+                    <button type="button" class="edit-btn" id="editBtn">Edytuj</button>
+                    <input type="submit" value="Zatwierdź" class="submit-btn" id="submitBtn">
                     <input type="submit" value="Usuń konto"  class="delete-btn">
                 </div>
             </form>
         </div>
-        <div id="profile"></div>
-        <div id="notices"></div>
     </main>
     <footer>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -88,29 +86,16 @@
         const phoneNumber = document.getElementById('phoneNumber');
         const adress = document.getElementById('adress');
 
-        let isEdited = false;
-
-        console.log(isEdited);
+        name.setAttribute('readonly', true);
+        lastName.setAttribute('readonly', true);
+        login.setAttribute('readonly', true);
+        firm.setAttribute('readonly', true);
+        type.setAttribute('disabled', true);
+        email.setAttribute('readonly', true);
+        phoneNumber.setAttribute('readonly', true);
+        adress.setAttribute('readonly', true);
 
         document.getElementById('editBtn').onclick = () => {
-            isEdited = true;
-            console.log(isEdited);
-        };
-
-        console.log(isEdited);
-
-        if (isEdited === false) {
-
-            name.setAttribute('readonly', true);
-            lastName.setAttribute('readonly', true);
-            login.setAttribute('readonly', true);
-            firm.setAttribute('readonly', true);
-            type.setAttribute('disabled', true);
-            email.setAttribute('readonly', true);
-            phoneNumber.setAttribute('readonly', true);
-            adress.setAttribute('readonly', true);
-        } else if (isEdited === true) {
-
             name.removeAttribute('readonly');
             lastName.removeAttribute('readonly');
             login.removeAttribute('readonly');
@@ -119,6 +104,17 @@
             email.removeAttribute('readonly');
             phoneNumber.removeAttribute('readonly');
             adress.removeAttribute('readonly');
+        };
+
+        document.getElementById('submitBtn').onclick = () => {
+            name.setAttribute('readonly', true);
+            lastName.setAttribute('readonly', true);
+            login.setAttribute('readonly', true);
+            firm.setAttribute('readonly', true);
+            type.setAttribute('disabled', true);
+            email.setAttribute('readonly', true);
+            phoneNumber.setAttribute('readonly', true);
+            adress.setAttribute('readonly', true);
         }
 
         window.addEventListener("pageshow", () => {
