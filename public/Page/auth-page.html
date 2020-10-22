@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" media="screen" href="auth-page.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <!-- <script src='main.js'></script> -->
   </head>
 
   <body>
@@ -35,6 +34,8 @@
                 <label for="password" class="uniLabel">Hasło:</label>
                 <input name="password" id="password" type="password" class="password-input">
                 <br>
+                <p class="invalidData" id="invalidData">Nieprawidłowe dane logowania!</p>
+
                 <input type="submit" id="loginSubmitBtn" class="login-btn" value="Zaloguj się">
             </form>
         </div>
@@ -46,8 +47,14 @@
           e.preventDefault(); // zapobiega pokazaniu jsona
           fetch('/login', { method: 'POST', body: new URLSearchParams(new FormData(event.target)), redirect: 'follow', }) // "body: new URLSearchParams(new FormData(event.target))" przekazuje dane formularza do requesta, trzeba to zrobić ze względu na "preventDefault()"
               .then(res => {
-                  if (res.redirected) return window.location.href = res.url;  // Jeżeli wprowadzone dane są poprawne przekieruje na stronę główną
-                  else res.json().then(data => console.log(data)) // jeżeli nie, wiadomość o niepoprwnych danych w zwróconym obiekcie data;
+                  if (res.redirected){
+                    document.getElementById('invalidData').style.display = 'none';
+                    return window.location.href = res.url;  // Jeżeli wprowadzone dane są poprawne przekieruje na stronę główną
+                  } 
+                  else res.json().then(data => {
+                    document.getElementById('invalidData').style.display = 'block';
+                    console.log(data);
+                  }) // jeżeli nie, wiadomość o niepoprwnych danych w zwróconym obiekcie data;
               })
       });
   </script>

@@ -59,3 +59,9 @@ main {
   display: flex;
   justify-content: center;
 }
+
+.invalidData {
+  color: red;
+  margin: 0px;
+  display: none;
+}
