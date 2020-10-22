@@ -46,11 +46,10 @@
                     <option value="person">Osoba</option>
                     <option value="corp/org">Firma/Organizacja</option>
                 </select>
-            </form>
-        </div>
-        <div class="adress-div">
-            <h1 class="headerTxt">Dane kontaktowe</h1>
-            <form>
+                </div>
+                <div class="adress-div">
+                <h1 class="headerTxt">Dane kontaktowe</h1>
+                
                 <label for="email" class="uniLabel">E-mail:</label>
                 <input name="email" id="email" type="email" class="input">
                 <br>
@@ -98,8 +97,6 @@
             name.removeAttribute('readonly');
             lastName.removeAttribute('readonly');
             login.removeAttribute('readonly');
-            firm.removeAttribute('readonly');
-            type.removeAttribute('disabled');
             email.removeAttribute('readonly');
             phoneNumber.removeAttribute('readonly');
             adress.removeAttribute('readonly');
@@ -109,8 +106,6 @@
             name.setAttribute('readonly', true);
             lastName.setAttribute('readonly', true);
             login.setAttribute('readonly', true);
-            firm.setAttribute('readonly', true);
-            type.setAttribute('disabled', true);
             email.setAttribute('readonly', true);
             phoneNumber.setAttribute('readonly', true);
             adress.setAttribute('readonly', true);
@@ -139,17 +134,17 @@
                     phoneNumber.value = data.phoneNumber;
                     adress.value = data.adress;
                 }
-                if (noticesIds.length != 0){
-                   noticesIds.forEach((element,index) => {     
-                       fetch(`/notices/getFromId?noticeId=${element}`).then(res => res.json()).then(data =>{
-                            noticesDiv.innerHTML += "<hr>";
-                           for(key in data){
-                               noticesDiv.innerHTML += `<br> ${key}: ${data[key]}`;
-                           }
-                       });
-                   })
-                }
             });
+        });
+
+        const form = document.querySelector("form");
+        form.addEventListener("submit", (e) => {
+            e.preventDefault(); // zapobiega pokazaniu jsona
+            fetch('/updateUser', { method: 'PUT', body: new URLSearchParams(new FormData(event.target)), redirect: 'follow', }) // "body: new URLSearchParams(new FormData(event.target))" przekazuje dane formularza do requesta, trzeba to zrobić ze względu na "preventDefault()"
+                .then(res => {
+                    if (res.redirected) return window.location.href = res.url; // Jeżeli wprowadzone dane są poprawne przekieruje na stronę główną
+                    else res.json().then(data => console.log(data)) // Niepoprawne dane są opisane w zwróconym obiekcie "data" 
+                })
         });
     </script>
     <script src='navbar.js'></script>
