@@ -36,37 +36,29 @@
                 <option value="corp/org">Firma/Organizacja</option>
             </select>
             <label for="name" class="uniLabel">Imię</label>
-            <input type="text" id="name" name="name" class="registerInput">
-            <p class="invalidData"id="invalidName">Imię jest wymagane!</p>
-            <p class="invalidData" id="invalidFirm">Nazwa firmy jest wymagana!</p>
+            <input type="text" id="name" name="name" class="registerInput" required>
 
             <label for="lastName" class="uniLabel">Nazwisko</label>
-            <input type="text" id="lastName" name="lastName" class="registerInput">
-            <p class="invalidData" id="invalidLastName">Nazwisko jest wymagane!</p>
+            <input type="text" id="lastName" name="lastName" class="registerInput" required>
 
             <label for="login" class="uniLabel">Login</label>
-            <input type="text" id="login" name="login" class="registerInput">
-            <p class="invalidData" id="invalidLogin">Login jest wymagany!</p>
+            <input type="text" id="login" name="login" class="registerInput" required>
 
             <label for="email" class="uniLabel">E-mail</label>
-            <input type="email" id="email" name="email" class="registerInput">
-            <p class="invalidData" id="invalidEmail">E-mail jest wymagany!</p>
+            <input type="email" id="email" name="email" class="registerInput" required>
 
             <label for="phoneNumber" class="uniLabel">Numer Telefonu</label>
-            <input type="phoneNumber" id="phoneNumber" name="phoneNumber" class="registerInput">
-            <p class="invalidData" id="invalidPhone">Błędny numer telefonu!</p>
+            <input type="phoneNumber" id="phoneNumber" name="phoneNumber" class="registerInput" required>
 
             <label for="adress" class="uniLabel">Adres</label>
-            <input type="adress" id="adress" name="adress" class="registerInput">
-            <p class="invalidData" id="invalidAdress">Adres jest wymagany!</p>
+            <input type="adress" id="adress" name="adress" class="registerInput" required>
 
             <label for="password" class="uniLabel">Hasło</label>
-            <input type="password" id="password" name="password" class="registerInput">
-            <p class="invalidData" id="invalidPassword">Hasło jest wymagane!</p>
+            <input type="password" id="password" name="password" class="registerInput" required>
             <p class="invalidData" id="tooShortPassword">Hasło jest za krótkie!</p>
 
             <label for="repeat-password" class="uniLabel">Powtórz hasło</label>
-            <input type="password" id="repeat-password" name="repeatedPassword" class="registerInput">
+            <input type="password" id="repeat-password" name="repeatedPassword" class="registerInput" required>
             <p class="invalidData" id="invalidPasswords">Hasła się nie zgadzają!</p>
 
             <br>
@@ -76,13 +68,6 @@
         </div>
     </main>
     <script>
-      const invalidName = document.getElementById('invalidName');
-      const invalidLastName = document.getElementById('invalidLastName');
-      const invalidFirm = document.getElementById('invalidFirm');
-      const invalidLogin = document.getElementById('invalidLogin');
-      const invalidEmail = document.getElementById('invalidEmail');
-      const invalidPhone = document.getElementById('invalidPhone');
-      const invalidAdress = document.getElementById('invalidAdress');
       const invalidPassword = document.getElementById('invalidPassword');
       const tooShortPassword = document.getElementById('tooShortPassword');
       const invalidPasswords = document.getElementById('invalidPasswords');
@@ -111,43 +96,15 @@
               .then(res => {
                   if (res.redirected) return window.location.href = res.url; // Jeżeli wprowadzone dane są poprawne przekieruje na stronę główną
                   else res.json().then(data => {
-                    if(data.name == 'Imię jest wymagane') {
-                      invalidName.style.display = 'block';
-                    } else if (data.name == 'Nazwa jest wymagana') {
-                      invalidFirm.style.display = 'block';
-                    }  
 
-                    if (data.lastName == 'Nazwisko jest wymagane') {
-                      invalidLastName.style.display = 'block';
-                    } 
-
-                    if (data.login == 'Login jest wymagany') {
-                      invalidLogin.style.display = 'block';
-                    }  
-
-                    if (data.email == 'Email jest wymagany') {
-                      invalidEmail.style.display = 'block';
-                    }  
-
-                    if (data.phoneNumber == 'Błędny numer telefonu') {
-                      invalidPhone.style.display = 'block';
-                    }  
-
-                    if (data.adress == 'adress jest wymagany') {
-                      invalidAdress.style.display = 'block';
-                    }  
-
-                    if (data.password == 'Hasło jest wymagane') {
-                      invalidPassword.style.display = 'block';
+                    
+                    if (data.passwords == 'Hasła się nie zgadzają') {
+                      invalidPasswords.style.display = 'block';
                     } 
 
                     if (data.password == 'Hasło jest za krótkie') {
                       tooShortPassword.style.display = 'block';
                     }  
-                    
-                    if (data.passwords == 'Hasła się nie zgadzają') {
-                      invalidPasswords.style.display = 'block';
-                    } 
 
                     console.log(data);
                   }) // Niepoprawne dane są opisane w zwróconym obiekcie "data" 
