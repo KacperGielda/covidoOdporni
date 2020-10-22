@@ -2,7 +2,6 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Logowanie</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" media="screen" href="auth-page.css" />
@@ -12,13 +11,18 @@
 
   <body>
     <header>
-      <p>Nazwa strony</p>
+      <p>CovidoOdporni</p>
       <ul>
-        <li><a href="auth-page.html" class="aktualne">Zaloguj się</a></li>
-        <li><a href="innaStrona.html">Ogłoszenia</a></li>
-        <li><a href="about.html">O nas</a></li>
-        <li><a href="home-a.html">Strona główna</a></li>
-        <li><button class="add-ad-btn">+ Dodaj nowe ogłoszenie</button></li>
+          <li><a href="home.html">Strona główna</a></li>
+          <li><a href="about.html">O nas</a></li>
+          <li><a href="innaStrona.html">Ogłoszenia</a></li>
+          <li class="aktualne" id="accountNav">Moje konto
+            <ol id="accountList">
+                  <li class="fix1"><a href="account.html">Informacje</a></li>
+                  <li><a href="">Powiadomienia</a></li>
+                  <li><a href="/logout" id="logoutBtn">Wyloguj</a></li>
+              </ol>
+          </li>   
       </ul>
     </header>
     <main>
@@ -26,15 +30,27 @@
         <div class="flex-div">
             <form>
                 <label for="login" class="uniLabel">Nazwa użytkownika / E-mail:</label>
-                <input id="login" type="text" class="username-input">
+                <input name="loginOrEmail" id="login" type="text" class="username-input">
                 <br>
                 <label for="password" class="uniLabel">Hasło:</label>
-                <input id="password" type="password" class="password-input">
+                <input name="password" id="password" type="password" class="password-input">
                 <br>
                 <input type="submit" id="loginSubmitBtn" class="login-btn" value="Zaloguj się">
             </form>
         </div>
         <a href="register-page.html" class="register-a">Nie masz jeszcze konta? Zarejestruj się!</a>
     </main>
+    <script>
+      const form = document.querySelector("form");
+      form.addEventListener("submit", (e) => {
+          e.preventDefault(); // zapobiega pokazaniu jsona
+          fetch('/login', { method: 'POST', body: new URLSearchParams(new FormData(event.target)), redirect: 'follow', }) // "body: new URLSearchParams(new FormData(event.target))" przekazuje dane formularza do requesta, trzeba to zrobić ze względu na "preventDefault()"
+              .then(res => {
+                  if (res.redirected) return window.location.href = res.url;  // Jeżeli wprowadzone dane są poprawne przekieruje na stronę główną
+                  else res.json().then(data => console.log(data)) // jeżeli nie, wiadomość o niepoprwnych danych w zwróconym obiekcie data;
+              })
+      });
+  </script>
+  <script src='navbar.js'></script>
   </body>
 </html>

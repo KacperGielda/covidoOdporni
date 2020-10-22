@@ -12,22 +12,8 @@ main {
 
 /* Inputy i labele */
 
-.registerInput,
-.adressInput,
-.phoneNmbInput {
+.registerInput {
   width: 400px;
-  height: 50px;
-  border: 1px solid #707070;
-  border-radius: 10px;
-  outline: none;
-  font-size: 20px;
-  text-align: left;
-  color: #606060;
-  padding-left: 10px;
-}
-
-.nameInput {
-  width: 180px;
   height: 50px;
   border: 1px solid #707070;
   border-radius: 10px;
@@ -67,7 +53,7 @@ main {
   color: white;
   background: #3734a2;
   cursor: pointer;
-  margin-bottom: 15px;
+  margin-top: 15px;
 }
 
 .login-btn:hover {
