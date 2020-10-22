@@ -88,7 +88,7 @@ router.delete("/deleteUser", (req, res) => {
             usersController.deleteUser(id, (isDeleted) => {
                 if (isDeleted) {
                     req.session.user = null;
-                    res.redirect("/login");
+                    res.redirect("/home");
                 } else {
                     res.json({ msg: "Nie udało się usunąć uzytkownika" });
                 }
