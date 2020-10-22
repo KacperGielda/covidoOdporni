@@ -3,7 +3,7 @@ const usersController = require("../controllers/UsersController");
 const router = express.Router();
 
 router.all('/register', (req, res, next) =>{
-    if (req.session.user) res.redirect(403,'/index');
+    if (req.session.user) res.redirect(403,'/Page/home');
     next();
 });
 
@@ -19,7 +19,7 @@ router.post("/register", (req, res) => {
 });
 
 router.all('/login', (req, res, next) =>{
-    if (req.session.user) res.redirect(403,'/index');
+    if (req.session.user) res.redirect(403,'/Page/home');
     next();
 });
 
@@ -27,7 +27,7 @@ router.post("/login", (req, res) => {
     usersController.logIn(req.body, (userID)=>{
         if (userID) {
             req.session.user = userID;
-            res.redirect(301, "/index");
+            res.redirect(301, "/Page/home");
         }
         else{
             res.json({message: "Nieprawidłowe dane logowania"})
@@ -50,7 +50,7 @@ router.get("/getUser", (req, res) => {
 router.get("/logout", (req, res)=>{
     if (req.session.user){
         req.session.user=null;
-        res.redirect("/index");
+        res.redirect("/Page/home");
     }
 });
 
@@ -66,7 +66,7 @@ router.put("/updateUser", (req, res)=>{
             }
             usersController.updateUser(id, updatedData, user, (msg)=>{
                 if (Object.keys(msg).length === 0) {
-                    res.redirect(301, "/profile");
+                    res.redirect(301, "/Page/account");
                 } else {;
                     res.json(msg);
                 }
