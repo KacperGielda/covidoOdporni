@@ -41,6 +41,6 @@ app.use(
 // app.use("/register", require(path.join(__dirname, "routes", "register")));
 // app.use("/getUser", require(path.join(__dirname, "routes", "getUser")));
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => console.log(`Server listening on ${PORT}`));

@@ -16,10 +16,13 @@ const belongsToUser = (userId, noticeId, callback) => {
 
 router.post("/search", (req, res) => {
     let { page } = req.query;
-    if (!page || page < 1) page = 1;
-    currUserId = req.session.user;
-    filters = req.body;
-    noticesController.getNotices(page, currUserId, filters, (notices) => res.json(notices));
+    const filters = req.body;
+    const currUserId = req.session.user;
+    noticesController.getPages(filters, (maxPages) => {
+        if (!page || page < 1) page = 1;
+        if (page > maxPages) page = maxPages;
+        noticesController.getNotices(page, currUserId, filters, (notices) => res.json({ notices, maxPages, page: parseInt(page) }));
+    });
 });
 
 router.post("/add", (req, res) => {
@@ -36,6 +39,9 @@ router.post("/add", (req, res) => {
                 case "userAdress":
                     noticeData.adress = user.adress;
                     break;
+            }
+            if (!noticeData.helps) {
+                noticeData.helps = ["other"];
             }
             noticesController.createNotice(noticeData, (msg) => {
                 if (Object.keys(msg).length === 0) {

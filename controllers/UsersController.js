@@ -71,11 +71,13 @@ module.exports = {
         );
     },
     assignNotice: (noticeId, userId) => {
+        const UsersCollection = getUsersCollection();
         UsersCollection.findOneAndUpdate({ _id: mongoose.Types.ObjectId(userId) }, { $push: { notices: noticeId } }, (err, user) => {
             if (err) console.log(err);
         });
     },
     removeNotice: (noticeId, userId) => {
+        const UsersCollection = getUsersCollection();
         UsersCollection.findOneAndUpdate(
             { _id: mongoose.Types.ObjectId(userId) },
             { $pull: { notices: mongoose.Types.ObjectId(noticeId) } },
@@ -83,5 +85,11 @@ module.exports = {
                 if (err) console.log(err);
             }
         );
+    },
+    deleteUser: (userId, callback) => {
+        const UsersCollection = getUsersCollection();
+        UsersCollection.deleteOne({ _id: mongoose.Types.ObjectId(userId) }, (err, res) => {
+            callback(res);
+        });
     },
 };
