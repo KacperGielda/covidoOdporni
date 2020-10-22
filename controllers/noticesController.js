@@ -74,6 +74,13 @@ module.exports = {
             );
         });
     },
+    getPages: (filters, callback) => {
+        const model = noticesCreator.model;
+        console.log(filters);
+        model.countDocuments({}, (err, counter) => {
+            callback(Math.ceil(counter / 10));
+        });
+    },
     susspend: (id, callback) => {
         let susspend;
         getNotice(id, (notice) => {

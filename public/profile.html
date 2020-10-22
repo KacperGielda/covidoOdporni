@@ -9,6 +9,7 @@
 <a href="./index">Strona Główna</a>
 <a href="./profileEditor">Edytuj</a>
 <div id="profile"></div>
+<button id="deleteUser">Usuń konto</button>
 <h3>Twoje ogłoszenia</h3>
 <div id="notices"></div>
 
@@ -16,7 +17,15 @@
     <script>
         const profile = document.getElementById('profile');
         const noticesDiv = document.getElementById('notices');
+        const delUserBtn = document.getElementById('deleteUser');
 
+        delUserBtn.addEventListener("click", ()=>{
+            fetch('/deleteUser', { method: 'DELETE', redirect: 'follow', }) 
+                .then(res => {
+                    if (res.redirected) return window.location.href = res.url; 
+                    else res.json().then(data => console.log(data)); 
+                })
+        });
 
 
         window.addEventListener("pageshow", () => {

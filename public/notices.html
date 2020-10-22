@@ -41,27 +41,113 @@
     <hr>
     <div id="notices"></div>
     
+    <div class="page">
+        strona: 
+    </div>
     <div class="lastPage">
-        Ostatnia Strona
+        <--
     </div>
     <div class="nextPage">
-        Kolejna Strona
+        -->
     </div>
     <script>
         const form = document.querySelector("form");
+        const pageDiv = document.querySelector(".page");
         const nextPage = document.querySelector(".nextPage");
         const lastPage = document.querySelector(".lastPage");
+        noticesDiv = document.getElementById("notices");
         let page = 1;
+
+        const displayNotices = (notices)=>{
+            if (!notices) return;
+            if (notices.user.length > 0){
+                noticesDiv.innerHTML += `<h2>Twoje ogłoszenia</h2>` 
+                notices.user.forEach(element=>{
+                    for (key in element){
+                        if (element[key]) noticesDiv.innerHTML += `<br>${key}: ${element[key]}` 
+                    }
+                    isSuspended = element.isSuspended;
+                            noticesDiv.innerHTML += "<hr>";
+                           if (isSuspended){
+                            noticesDiv.innerHTML +=`<button class="susspend" id="${element._id}">Wznów</button>`;
+                           } else {
+                            noticesDiv.innerHTML +=`<button class="susspend" id="${element._id}">Zawieś</button>`; 
+                           }
+                           noticesDiv.innerHTML += 
+                           `
+                            <button class="delete" id="${element._idt}">Usuń</button>
+                            <button class="edit" id="${element._id}">Edytuj</button>
+
+                           `;
+                           document.querySelectorAll(".susspend, .delete, .edit").forEach(element=>{
+                            element.addEventListener('click',(e)=>{
+                                const noticeId = e.target.id;
+                                const buttonClass = e.target.className;
+                                switch (buttonClass){
+                                    case "susspend":
+                                        fetch(`/notices/suspendById?noticeId=${noticeId}`, { method: "PUT", }).then(res => res.json())
+                                            .then(data => {
+                                                if (data.success){
+                                                    if(e.target.textContent === "Wznów") e.target.textContent = "Zawieś";
+                                                    else e.target.textContent = "Wznów";
+                                                    window.location.reload(true);
+                                                }
+                                            });
+                                        break;
+                                    case "delete":
+                                        fetch(`/notices/delete?noticeId=${noticeId}`, {method: "DELETE"}).then(res => res.json())
+                                            .then(data => {
+                                                if (data.success){
+                                                    if(e.target.textContent === "Wznów") e.target.textContent = "Zawieś";
+                                                    else e.target.textContent = "Wznów";
+                                                    window.location.reload(true);
+                                                }
+                                            });
+                                        break;
+                                    case "edit":
+                                        window.location.href = (`/noticeEditor?id=${noticeId}`);
+                                        break;
+                                }
+                            })
+                            })
+                noticesDiv.innerHTML += `<hr>`;
+                }); 
+            }
+            if (notices.notUser.length > 0){
+                noticesDiv.innerHTML += `<h2>Ogłoszenia:</h2>` 
+                noticesDiv.innerHTML += "<hr>";
+                notices.notUser.forEach(element=>{
+                    for (key in element){
+                        if (element[key]) noticesDiv.innerHTML += `<br>${key}: ${element[key]}` 
+                    }
+                    noticesDiv.innerHTML += "<hr>";
+                });
+            }
+        };
+
+        const displayPages = (data)=>{
+            if (page === 1) lastPage.style.display = 'none';
+            else lastPage.style.display = 'inline';
+            if (page === data.maxPages) nextPage.style.display = 'none';
+            else nextPage.style.display = 'inline';
+            pageDiv.textContent = `Strona ${page} z ${data.maxPages}`;
+        };
+
         const getNotices = (e) => {
             e.preventDefault(); // zapobiega pokazaniu jsona
             fetch(`/notices/search?page=${page}`, { method: 'POST', body: new URLSearchParams(new FormData(form)), redirect: 'follow', }) // "body: new URLSearchParams(new FormData(event.target))" przekazuje dane formularza do requesta, trzeba to zrobić ze względu na "preventDefault()"
-                .then(res => res.json()).then(data => console.log(data))
+                .then(res => res.json()).then(data => {
+                    console.log(data);
+                    displayNotices(data.notices);
+                    page = data.page;
+                    displayPages(data);
+                });
         };
 
-        form.addEventListener("submit", e => getNotices(e));
-        window.addEventListener("pageshow", e => getNotices(e));
-        nextPage.addEventListener("click", e => { page++; getNotices(e);});
-        lastPage.addEventListener("click", e => { page--; getNotices(e);});
+        form.addEventListener("submit", e => {noticesDiv.innerHTML =""; getNotices(e)});
+        window.addEventListener("pageshow", e => {noticesDiv.innerHTML =""; getNotices(e)});
+        nextPage.addEventListener("click", e => {noticesDiv.innerHTML =""; page++; getNotices(e);});
+        lastPage.addEventListener("click", e => {noticesDiv.innerHTML =""; page--; getNotices(e);});
     </script>
 </body>
 </html>
