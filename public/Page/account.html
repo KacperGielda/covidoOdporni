@@ -56,7 +56,7 @@
                 <div class="submit-btns">
                     <button type="button" class="edit-btn" id="editBtn">Edytuj</button>
                     <input type="submit" value="Zatwierdź" class="submit-btn" id="submitBtn">
-                    <input type="submit" value="Usuń konto"  class="delete-btn">
+                    <input type="submit" value="Usuń konto"  class="delete-btn" id="deleteBtn">
                 </div>
             </form>
         </div>
@@ -139,6 +139,22 @@
                     if (res.redirected) return window.location.href = res.url; // Jeżeli wprowadzone dane są poprawne przekieruje na stronę główną
                     else res.json().then(data => console.log(data)) // Niepoprawne dane są opisane w zwróconym obiekcie "data" 
                 })
+        });
+
+        const delUserBtn = document.getElementById('deleteBtn');
+
+        delUserBtn.addEventListener("click", ()=>{
+            let answer = confirm('Czy na pewno chcesz usunąć konto? Tej operacji nie da się cofnąć!');
+
+            if (answer === true) {
+                fetch('/deleteUser', { method: 'DELETE', redirect: 'follow', }) 
+                    .then(res => {
+                        if (res.redirected) return window.location.href = res.url; 
+                        else res.json().then(data => console.log(data)); 
+                })
+            } else {
+                console.log("Nie usunięto konta");
+            }
         });
     </script>
   </body>
