@@ -4,7 +4,7 @@ const noticesController = require("../controllers/noticesController");
 const router = express.Router();
 
 router.all('/register', (req, res, next) =>{
-    if (req.session.user) res.redirect(403,'/Page/home');
+    if (req.session.user) res.redirect(403,'/Page/home-logged');
     next();
 });
 
@@ -12,7 +12,7 @@ router.post("/register", (req, res) => {
     usersController.createUser(req.body, (newUserID, msg) => {
         if (Object.keys(msg).length === 0) {
             req.session.user = newUserID;
-            res.redirect(301, "index");
+            res.redirect(301, "/Page/home-logged");
         } else {
             res.json(msg);
         }
@@ -20,7 +20,7 @@ router.post("/register", (req, res) => {
 });
 
 router.all('/login', (req, res, next) =>{
-    if (req.session.user) res.redirect(403,'/Page/home');
+    if (req.session.user) res.redirect(403,'/Page/home-logged');
     next();
 });
 
@@ -28,7 +28,7 @@ router.post("/login", (req, res) => {
     usersController.logIn(req.body, (userID) => {
         if (userID) {
             req.session.user = userID;
-            res.redirect(301, "/Page/home");
+            res.redirect(301, "/Page/home-logged");
         }
         else{
             res.json({message: "Nieprawidłowe dane logowania"})
