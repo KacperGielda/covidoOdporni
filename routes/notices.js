@@ -78,7 +78,7 @@ router.put("/update", (req, res) => {
         if (req.session.user && belongs) {
             noticesController.updateNotice(id, req.body, (msg) => {
                 if (Object.keys(msg).length > 0) res.json(msg);
-                else res.redirect(301, "/profile");
+                else res.redirect(301, "/account");
             });
         } else res.redirect(403, "/home");
     });
