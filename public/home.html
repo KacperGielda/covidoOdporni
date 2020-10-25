@@ -35,7 +35,7 @@
           <br>
           Zachęcamy również do utworzenia bezpłatnego konta:
         </p>
-        <button class="register-btn" id="registerBtn"><a href="register-page">Zarejestruj się</a></button>
+        <button class="register-btn" id="registerBtn"><a href="/register-page">Zarejestruj się</a></button>
       </aside>
 
       <article>
@@ -53,6 +53,12 @@
       </svg>
     </footer>
     <script>
+      const helpBtns = document.querySelectorAll('.help-btn');
+      helpBtns.forEach(element=>{
+        element.addEventListener('click',()=>{
+          window.location.href="./register-page";
+        });
+      })
       window.addEventListener('pageshow', ()=>{
         fetch('/getUser').then(res => res.json()).then(data =>{
           if(data){

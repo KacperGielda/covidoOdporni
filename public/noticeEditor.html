@@ -2,49 +2,70 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Edytor ogłoszeń</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="noticeEditor.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
 </head>
 
 <body>
-    <form>
-        <label for="title">Tytuł</label>
-        <input type="text" id="title" name="title">
-        <br>
-        <label for="content">Opis</label>
-        <textarea name="content" id="content" cols="30" rows="10"></textarea>
-        <br>
-        <label for="type">Typ ogłoszenia</label>
-        <select name="type" id="type">
-            <option value="giveHelp">Chęć pomocy</option>
-            <option value="needHelp">Prośba o pomoc</option>
-        </select>
-        <label for="price">cena</label>
-            <select name="price" id="price">
-                <option value="coverCost">Pokrycie kosztów</option>
-                <option value="free">Za darmo</option>
-                <option value="negotiated">Do uzgodnienia</option>
-            </select>
-            <br>
-            <input type="checkbox" id="shopping" name="helps" value="shopping">
-            <label for="shopping"> Zakupy</label>
-            <input type="checkbox" id="takingPetsOut" name="helps" value="takingPetsOut">
-            <label for="takingPetsOut"> Wyprowadzanie pupili</label>
-            <input type="checkbox" id="tutoring" name="helps" value="tutoring">
-            <label for="tutoring"> Korepetycje</label>
-            <input type="checkbox" id="meal" name="helps" value="meal">
-            <label for="meal"> Posiłek</label>
-            <input type="checkbox" id="other" name="helps" value="other">
-            <label for="other"> Inne</label>
-            <br>
-            <label for="adress">Lokalizacja</label>
-            <input type="text" name="adress" id="adress" disabled>
-            <label><input type="radio" name="locationChoice" value="remote"> zdalnie</label>
-            <label><input type="radio" name="locationChoice" value="userAdress" checked>Mój adress</label>
-            <label><input type="radio" name="locationChoice" value="newAdress">inny adress</label>
-            <input type="submit" value="Zatwierdź">
-    </form>
+    <header>
+        <p>CovidoOdporni</p>
+        <ul>
+            <li class="aktualne"><a href="home-logged">Strona główna</a></li>
+            <li><a href="about-logged">O nas</a></li>
+            <li><a href="notices">Ogłoszenia</a></li>
+            <li>Moje konto
+              <ol>
+                    <li class="fix1"><a href="account">Informacje</a></li>
+                    <li><a href="/logout" id="logoutBtn">Wyloguj</a></li>
+                </ol>
+            </li>   
+        </ul>
+    </header>
+  
+    <article>
+        <div class="editor-content">
+            <form>
+                <label for="type">Typ ogłoszenia</label><br>
+                <select name="type" id="type" class="input">
+                    <option value="giveHelp">Chęć pomocy</option>
+                    <option value="needHelp">Prośba o pomoc</option>
+                </select><br>
+                <label for="price">Cena</label><br>
+                <select name="price" id="price" class="input">
+                    <option value="coverCost">Pokrycie kosztów</option>
+                    <option value="free">Za darmo</option>
+                    <option value="negotiated">Do uzgodnienia</option>
+                </select><br>
+                <input type="checkbox" id="shopping" name="helps" value="shopping">
+                <label for="shopping"> Zakupy</label><br>
+                <input type="checkbox" id="takingPetsOut" name="helps" value="takingPetsOut">
+                <label for="takingPetsOut"> Wyprowadzanie pupili</label><br>
+                <input type="checkbox" id="tutoring" name="helps" value="tutoring">
+                <label for="tutoring"> Korepetycje</label><br>
+                <input type="checkbox" id="meal" name="helps" value="meal">
+                <label for="meal"> Posiłek</label><br>
+                <input type="checkbox" id="other" name="helps" value="other">
+                <label for="other"> Inne</label>
+                <br><br>
+                <label for="adress">Lokalizacja</label><br>
+                <label class="loclalisation"><input type="radio" name="locationChoice" value="remote">Zdalnie</label>
+                <label class="loclalisation"><input type="radio" name="locationChoice" value="newAdress">Inny adress</label>
+                <label class="loclalisation"><input type="radio" name="locationChoice" value="userAdress" checked>Mój adress</label>
+                <input type="text" name="adress" id="adress" class="input" disabled><br>
+                <hr>
+                <label for="title" >Tytuł</label><br>
+                <input type="text" id="title" class="input" name="title"><br>
+                <label for="content">Opis</label><br>
+                <textarea name="content" id="content" cols="30" rows="7"></textarea>
+                <br>
+                <input type="submit" value="Zatwierdź" class="confirm-btn">
+            </form>
+        </div>
+    </article>
     <script>
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
