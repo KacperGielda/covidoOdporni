@@ -113,3 +113,14 @@ ol li:hover {
 input:focus {
     border: 1px solid #3734a2;
 }
+
+.addNotice {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: red !important;
+    color: white !important;
+    width: 230px;
+    padding: 5px;
+    margin-top: -5px;
+}
