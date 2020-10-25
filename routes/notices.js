@@ -1,6 +1,7 @@
+const path = require("path");
 const express = require("express");
-const usersController = require("../controllers/UsersController");
-const noticesController = require("../controllers/noticesController");
+const usersController = require(path.join(__dirname, "..", "controllers", "UsersController"));
+const noticesController = require(path.join(__dirname, "..", "controllers", "noticesController"));
 const router = express.Router();
 
 const belongsToUser = (userId, noticeId, callback) => {
@@ -40,6 +41,9 @@ router.post("/add", (req, res) => {
                     noticeData.adress = user.adress;
                     break;
             }
+            noticeData.authorEmail = user.email;
+            noticeData.authorPhoneNumber = user.phoneNumber;
+            noticeData.author = `${user.name} ${user.lastName ? user.lastName : ""}`.trim();
             if (!noticeData.helps) {
                 noticeData.helps = ["other"];
             }

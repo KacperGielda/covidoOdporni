@@ -4,13 +4,16 @@ const cookieParser = require("cookie-parser");
 const cookieSession = require("cookie-session");
 const path = require("path");
 
-const config = require("./config");
+let config;
+try {
+    config = require("./config");
+} catch (err) {}
 
 const app = express();
 
 mongoose.set("useCreateIndex", true);
 db = mongoose
-    .connect(config.database, {
+    .connect(process.env.database || config.database, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
@@ -21,13 +24,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(
     cookieSession({
-        name: config.sessionName,
-        secret: config.sessionSecret,
-        maxAge: config.sessionMaxAge,
+        name: process.env.sessionName || config.sessionName,
+        secret: process.env.sessionSecret || config.sessionSecret,
+        maxAge: process.env.sessionMaxAge || config.sessionMaxAge,
     })
 );
 
-app.use("/", require(path.join(__dirname, "routes", "index")));
 app.use("/", require(path.join(__dirname, "routes", "users")));
 app.use("/notices", require(path.join(__dirname, "routes", "notices")));
 

@@ -82,6 +82,15 @@ const noticeSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
+    authorEmail: {
+        type: String,
+    },
+    authorPhoneNumber: {
+        type: String,
+    },
+    author: {
+        type: String,
+    },
 });
 
 noticeSchema.pre("updateOne", function (next) {

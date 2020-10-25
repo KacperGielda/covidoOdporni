@@ -1,4 +1,5 @@
-const usersCreator = require("../creators/usersCreator");
+const path = require("path");
+const usersCreator = require(path.join(__dirname, "..", "creators", "usersCreator"));
 const bcrypt = require("bcrypt");
 const emailValidator = require("email-validator");
 const mongoose = require("mongoose");
