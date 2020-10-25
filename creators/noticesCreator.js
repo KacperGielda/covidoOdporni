@@ -88,6 +88,9 @@ const noticeSchema = new mongoose.Schema({
     authorPhoneNumber: {
         type: String,
     },
+    author: {
+        type: String,
+    },
 });
 
 noticeSchema.pre("updateOne", function (next) {

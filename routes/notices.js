@@ -43,6 +43,7 @@ router.post("/add", (req, res) => {
             }
             noticeData.authorEmail = user.email;
             noticeData.authorPhoneNumber = user.phoneNumber;
+            noticeData.author = `${user.name} ${user.lastName ? user.lastName : ""}`.trim();
             if (!noticeData.helps) {
                 noticeData.helps = ["other"];
             }
