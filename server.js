@@ -36,6 +36,7 @@ app.use("/notices", require(path.join(__dirname, "routes", "notices")));
 app.use(
     express.static(path.join(__dirname, "public"), {
         extensions: ["html"],
+        index: "home.html",
     })
 );
 

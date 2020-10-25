@@ -1,13 +1,13 @@
-body{
+body {
     background-image: url("images/geometry2.png");
-    font-family: 'Segoe UI';
+    font-family: "Segoe UI";
     font-size: 24px;
     color: #7e7e7e;
 }
 
 article {
     display: block;
-    position: fixed; 
+    position: fixed;
     z-index: 1;
     padding-top: 20px;
     left: 0;
@@ -29,7 +29,7 @@ article {
     vertical-align: middle;
 }
 
-.editor-content form{
+.editor-content form {
     margin-left: 0px;
 }
 
@@ -60,7 +60,7 @@ article {
     margin-top: 5px;
 }
 
-textarea{
+textarea {
     width: calc(100% - 4px);
     margin-top: 10px;
     border: 1px solid #707070;
@@ -69,7 +69,7 @@ textarea{
     color: #606060;
 }
 
-.loclalisation{
+.loclalisation {
     margin-right: 15px;
 }
 

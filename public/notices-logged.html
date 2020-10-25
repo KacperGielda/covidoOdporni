@@ -12,14 +12,13 @@
     <header>
         <p>Nazwa strony</p>
         <ul>
-            <li><a href="innaStrona.html">Strona główna</a></li>
-            <li><a href="innaStrona.html">O nas</a></li>
-            <li class="aktualne"><a href="innaStrona.html">Ogłoszenia</a></li>
+            <li><a href="home">Strona główna</a></li>
+            <li><a href="about">O nas</a></li>
+            <li class="aktualne"><a href="notices">Ogłoszenia</a></li>
             <li>Twoje konto
                 <ol>
-                    <li class="fix1"><a href="">Informacje</a></li>
-                    <li><a href="">Powiadomienia</a></li>
-                    <li><a href="">Wyloguj</a></li>
+                    <li class="fix1"><a href="account">Informacje</a></li>
+                    <li><a href="/logout">Wyloguj</a></li>
                 </ol>
             </li>   
         </ul>
@@ -310,7 +309,7 @@
                                         });
                                     break;
                                 case "edit-btn":
-                                    window.location.href = (`/Page/noticeEditor?id=${noticeId}`);
+                                    window.location.href = (`/noticeEditor?id=${noticeId}`);
                                     break;
                             }
                         })
@@ -352,8 +351,18 @@
                 });
         };
 
+        window.addEventListener("pageshow", e => {
+
+            fetch('/getUser').then(res => res.json()).then(data =>{
+                if(!data){
+                window.location.href= "/notices";
+                }
+            });
+        
+            noticesDiv.innerHTML =""; 
+            userNoticesDiv.innerHTML=""; 
+            getNotices(e)});
         form.addEventListener("submit", e => {noticesDiv.innerHTML =""; userNoticesDiv.innerHTML=""; getNotices(e)});
-        window.addEventListener("pageshow", e => {noticesDiv.innerHTML =""; userNoticesDiv.innerHTML=""; getNotices(e)});
         nextPage.addEventListener("click", e => {noticesDiv.innerHTML =""; userNoticesDiv.innerHTML=""; page++; getNotices(e);});
         lastPage.addEventListener("click", e => {noticesDiv.innerHTML =""; userNoticesDiv.innerHTML=""; page--; getNotices(e);});
 

@@ -7,29 +7,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" media="screen" href="home.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <!-- <script src='main.js'></script> -->
   </head>
 
   <body>
     <header>
       <p>CovidoOdporni</p>
       <ul>
-          <li class="aktualne"><a href="home-logged">Strona główna</a></li>
-          <li><a href="about-logged">O nas</a></li>
-          <li><a href="innaStrona">Ogłoszenia</a></li>
-          <li>Moje konto
-            <ol>
-                  <li class="fix1"><a href="account">Informacje</a></li>
-                  <li><a href="">Powiadomienia</a></li>
-                  <li><a href="/logout" id="logoutBtn">Wyloguj</a></li>
-              </ol>
-          </li>   
+          <li class="aktualne"><a href="home">Strona główna</a></li>
+          <li><a href="about">O nas</a></li>
+          <li><a href="notices">Ogłoszenia</a></li>  
+          <li><a href="auth-page">Zaloguj się</a></li> 
       </ul>
   </header>
 
     <main>
       <aside>
-        <p class="topText">Nazwa sewisu</p>
+        <p class="topText">CovidoOdporni</p>
         <p class="bottomText">
           Jest to serwis ogłoszeniowy, na którym,
           jeśli potrzebujesz pomocy na przykład w zrobieniu zakupów,
@@ -42,6 +35,7 @@
           <br>
           Zachęcamy również do utworzenia bezpłatnego konta:
         </p>
+        <button class="register-btn" id="registerBtn"><a href="register-page">Zarejestruj się</a></button>
       </aside>
 
       <article>
@@ -58,5 +52,14 @@
         <path fill="#3734a2" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,165.3C384,171,480,149,576,149.3C672,149,768,171,864,165.3C960,160,1056,128,1152,122.7C1248,117,1344,139,1392,149.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
       </svg>
     </footer>
+    <script>
+      window.addEventListener('pageshow', ()=>{
+        fetch('/getUser').then(res => res.json()).then(data =>{
+          if(data){
+            window.location.href= "/home-logged";
+          }
+        });
+      });
+    </script>
   </body>
 </html>

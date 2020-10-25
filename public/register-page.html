@@ -16,7 +16,7 @@
       <ul>
           <li><a href="home">Strona główna</a></li>
           <li><a href="about">O nas</a></li>
-          <li><a href="#">Ogłoszenia</a></li>
+          <li><a href="notices">Ogłoszenia</a></li>
           <li class="aktualne"><a href="auth-page">Zaloguj się</a></li>    
       </ul>
   </header>
@@ -62,6 +62,14 @@
         </div>
     </main>
     <script>
+
+    window.addEventListener('pageshow', ()=>{
+            fetch('/getUser').then(res => res.json()).then(data =>{
+              if(data){
+                window.location.href= "/home-logged";
+              }
+            });
+          });
       const invalidPassword = document.getElementById('invalidPassword');
       const tooShortPassword = document.getElementById('tooShortPassword');
       const invalidPasswords = document.getElementById('invalidPasswords');

@@ -14,7 +14,7 @@
       <ul>
           <li><a href="home">Strona główna</a></li>
           <li><a href="about">O nas</a></li>
-          <li><a href="innaStrona">Ogłoszenia</a></li>
+          <li><a href="notices">Ogłoszenia</a></li>
           <li class="aktualne"><a href="auth-page">Zaloguj się</a></li>    
       </ul>
     </header>
@@ -33,9 +33,17 @@
                 <input type="submit" id="loginSubmitBtn" class="login-btn" value="Zaloguj się">
             </form>
         </div>
-        <a href="register-page.html" class="register-a">Nie masz jeszcze konta? Zarejestruj się!</a>
+        <a href="register-page" class="register-a">Nie masz jeszcze konta? Zarejestruj się!</a>
     </main>
     <script>
+
+    window.addEventListener('pageshow', ()=>{
+        fetch('/getUser').then(res => res.json()).then(data =>{
+          if(data){
+            window.location.href= "/home";
+          }
+        });
+      });
       const form = document.querySelector("form");
       form.addEventListener("submit", (e) => {
           e.preventDefault(); // zapobiega pokazaniu jsona

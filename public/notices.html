@@ -1,127 +1,330 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Tytuł Strony</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='notices.css'>
+    <!-- <script src='main.js'></script> -->
 </head>
 <body>
-    <a href="/index">Strona główna</a>
-    <hr>
-    <form>
-        <input type="search" id="search" name="search" placeholder="szukaj">
-        <input type="search" id="localization" name="localization" placeholder="lokalizacja">
-        <label for="type">Typ ogłoszenia</label>
-        <select name="type" id="type">
-            <option value="all">Wszystkie</option>
-            <option value="giveHelp">Chęć pomocy</option>
-            <option value="needHelp">Prośba o pomoc</option>
-        </select>
-        <label for="price">cena</label>
-            <select name="price" id="price">
-                <option value="all">Wszystkie</option>
-                <option value="coverCost">Pokrycie kosztów</option>
-                <option value="free">Za darmo</option>
-                <option value="negotiated">Do uzgodnienia</option>
-            </select>
-            <br>
-            <input type="checkbox" id="shopping" name="helps" value="shopping">
-            <label for="shopping"> Zakupy</label>
-            <input type="checkbox" id="takingPetsOut" name="helps" value="takingPetsOut">
-            <label for="takingPetsOut"> Wyprowadzanie pupili</label>
-            <input type="checkbox" id="tutoring" name="helps" value="tutoring">
-            <label for="tutoring"> Korepetycje</label>
-            <input type="checkbox" id="meal" name="helps" value="meal">
-            <label for="meal"> Posiłek</label>
-            <input type="checkbox" id="other" name="helps" value="other">
-            <label for="other"> Inne</label>
-            <br>
-            <input type="submit" value="szukaj">
-    </form>
-    <hr>
-    <div id="notices"></div>
-    
-    <div class="page">
-        strona: 
-    </div>
-    <div class="lastPage">
-        <--
-    </div>
-    <div class="nextPage">
-        -->
-    </div>
+    <header>
+        <p>CovidoOdporni</p>
+        <ul>
+            <li><a href="home.html">Strona główna</a></li>
+            <li><a href="about.html">O nas</a></li>
+            <li class="aktualne"><a href="notices.html">Ogłoszenia</a></li>  
+            <li><a href="auth-page.html">Zaloguj się</a></li> 
+        </ul>
+    </header>
+  
+
+    <main>
+        <aside>
+            <form>
+                <p>Filtr ogłoszeń</p>
+                <label for="search">Wyszukaj po tytule:</label><br>
+                <input type="search" id="search" name="search" placeholder="szukaj"><br><br>
+                <label for="localization">Wyszukaj lokalizację:</label><br>
+                <input type="search" id="localization" name="localization" placeholder="lokalizacja"><br><br>
+                <label for="type">Wyszukaj typ ogłoszenia:</label><br>
+                <select name="type" id="type"><br>
+                    <option value="all">Wszystkie</option><br>
+                    <option value="giveHelp">Chęć pomocy</option><br>
+                    <option value="needHelp">Prośba o pomoc</option><br>
+                </select><br><br>
+                <label for="price">Wyszukaj według ceny:</label><br>
+                    <select name="price" id="price"><br>
+                        <option value="all">Wszystkie</option><br>
+                        <option value="coverCost">Pokrycie kosztów</option><br>
+                        <option value="free">Za darmo</option><br>
+                        <option value="negotiated">Do uzgodnienia</option><br>
+                    </select><br><br>
+                <label for="helps">Wyszukaj typ pomocy:</label><br>
+                <input type="checkbox" id="shopping" name="helps" value="shopping">
+                <label for="shopping"> Zakupy</label><br>
+                <input type="checkbox" id="takingPetsOut" name="helps" value="takingPetsOut">
+                <label for="takingPetsOut"> Wyprowadzanie pupili</label><br>
+                <input type="checkbox" id="tutoring" name="helps" value="tutoring">
+                <label for="tutoring"> Korepetycje</label><br>
+                <input type="checkbox" id="meal" name="helps" value="meal">
+                <label for="meal"> Posiłek</label><br>
+                <input type="checkbox" id="other" name="helps" value="other">
+                <label for="other"> Inne</label>
+                <br>
+                <input type="submit" value="Szukaj" class="filter-btn">
+            </form>
+        </aside>
+
+        <article>
+            <div class="notice-select">
+                
+                <div class="all-notices-selected" id="all-notices-selected-id">
+                    <p>Ogłoszenia</p>
+                </div>
+                
+                <div class="user-notices-select" id="user-notices-selected-id">
+                    <p>Moje ogłoszenia</p>
+                </div>
+            </div>
+            <div id="user-notices"></div>
+            <div id="notices"></div>
+
+            
+            
+            <!-- do usunięcia:
+                
+                brak ogloszen
+            <div class="brakOgloszen"><p>Najwyraźniej wszyscy otrzymali już potrzebną im pomoc :)</p></div>
+            ogloszenie
+            <div class="ogloszenie">
+                <div class="info">
+                    <div class="dane1">
+                        <h2 class="h2">Moje imie</h2><h2 class="h2"> &nbsp &middot &nbsp </h2><h2 class="h2">Typ ogłoszenia</h2>
+                    </div>
+                    <div class="dane1">
+                        <p class="h2">Cena</p><p class="h2"> &nbsp &middot &nbsp </p><p class="h2">Typ pomocy</p><p class="h2"> &nbsp &middot &nbsp </p><p class="h2">Lokalizacja</p>
+                    </div>
+                </div>
+                <div class="tresc">
+                    <div>
+                        <h2 class="h2">Tytuł</h2>
+                        <p>Dzien dobry szukam kogos kto bedzie mi przez 2 tygodnie robil zakupy we wtorek i piatek.</p>
+                    </div>
+                    <div>
+                        <input type="submit" value="Zaoferuj pomoc!" class="offer-btn">
+                    </div>
+                </div>
+            </div> -->
+
+
+
+            <div class="navigation">
+                <div class="page">
+                    strona: 
+                </div>
+                <div class="navigation-arrows">
+                    <div class="lastPage">
+                        Poprzednia strona
+                    </div>
+                    <div class="nextPage">
+                        Nastepna strona
+                    </div>
+                </div>
+            </div>
+            
+        </article>
+        
+    </main>
     <script>
         const form = document.querySelector("form");
         const pageDiv = document.querySelector(".page");
+        const navigation = document.querySelector(".navigation")
         const nextPage = document.querySelector(".nextPage");
         const lastPage = document.querySelector(".lastPage");
-        noticesDiv = document.getElementById("notices");
+        const noticesDiv = document.getElementById("notices");
+        const userNoticesDiv = document.getElementById("user-notices");
         let page = 1;
 
-        const displayNotices = (notices)=>{
-            if (!notices) return;
-            if (notices.user.length > 0){
-                noticesDiv.innerHTML += `<h2>Twoje ogłoszenia</h2>` 
-                notices.user.forEach(element=>{
-                    for (key in element){
-                        if (element[key]) noticesDiv.innerHTML += `<br>${key}: ${element[key]}` 
-                    }
-                    isSuspended = element.isSuspended;
-                            noticesDiv.innerHTML += "<hr>";
-                           if (isSuspended){
-                            noticesDiv.innerHTML +=`<button class="susspend" id="${element._id}">Wznów</button>`;
-                           } else {
-                            noticesDiv.innerHTML +=`<button class="susspend" id="${element._id}">Zawieś</button>`; 
-                           }
-                           noticesDiv.innerHTML += 
-                           `
-                            <button class="delete" id="${element._idt}">Usuń</button>
-                            <button class="edit" id="${element._id}">Edytuj</button>
+        const allBtn = document.getElementById("all-notices-selected-id");
+        const myBtn = document.getElementById("user-notices-selected-id");
 
-                           `;
-                           document.querySelectorAll(".susspend, .delete, .edit").forEach(element=>{
-                            element.addEventListener('click',(e)=>{
-                                const noticeId = e.target.id;
-                                const buttonClass = e.target.className;
-                                switch (buttonClass){
-                                    case "susspend":
-                                        fetch(`/notices/suspendById?noticeId=${noticeId}`, { method: "PUT", }).then(res => res.json())
-                                            .then(data => {
-                                                if (data.success){
-                                                    if(e.target.textContent === "Wznów") e.target.textContent = "Zawieś";
-                                                    else e.target.textContent = "Wznów";
-                                                    window.location.reload(true);
-                                                }
-                                            });
-                                        break;
-                                    case "delete":
-                                        fetch(`/notices/delete?noticeId=${noticeId}`, {method: "DELETE"}).then(res => res.json())
-                                            .then(data => {
-                                                if (data.success){
-                                                    if(e.target.textContent === "Wznów") e.target.textContent = "Zawieś";
-                                                    else e.target.textContent = "Wznów";
-                                                    window.location.reload(true);
-                                                }
-                                            });
-                                        break;
-                                    case "edit":
-                                        window.location.href = (`/noticeEditor?id=${noticeId}`);
-                                        break;
-                                }
-                            })
-                            })
-                noticesDiv.innerHTML += `<hr>`;
-                }); 
-            }
-            if (notices.notUser.length > 0){
-                noticesDiv.innerHTML += `<h2>Ogłoszenia:</h2>` 
-                noticesDiv.innerHTML += "<hr>";
-                notices.notUser.forEach(element=>{
-                    for (key in element){
-                        if (element[key]) noticesDiv.innerHTML += `<br>${key}: ${element[key]}` 
-                    }
-                    noticesDiv.innerHTML += "<hr>";
+        allBtn.addEventListener("click", ()=>{
+            noticesDiv.style.display = "block";
+            userNoticesDiv.style.display = "none";
+            allBtn.className = "all-notices-selected";
+            myBtn.className = "user-notices-select";
+            navigation.style.display = "flex";
+        });
+
+
+        myBtn.addEventListener("click", ()=>{
+            noticesDiv.style.display = "none";
+            userNoticesDiv.style.display = "block";
+            allBtn.className = "all-notices-select";
+            myBtn.className = "user-notices-selected";
+            navigation.style.display = "none";
+        });
+
+        const generateHtmlNotice = (notice)=>{
+            return `
+                    <div class="ogloszenie">
+                        <div class="info">
+                            <div class="dane1"> 
+                                <h2 class="h2" id="type">
+                                   ${notice.type}
+                                </h2>
+                            </div>
+                                <div class="dane1">
+                                <p class="h2" id="author"> ${notice.author} </p>
+                                <p class="h2"> &nbsp &middot &nbsp </p>
+                                <p class="h2" id="price"> ${notice.price} </p>
+                                <p class="h2"> &nbsp &middot &nbsp </p>
+                                <p class="h2" id="typeOfHelp"> ${notice.helps}  </p>
+                                <p class="h2"> &nbsp &middot &nbsp </p>
+                                <p class="h2" id="where"> ${notice.adress} </p>
+                                <p class="h2"> &nbsp &middot &nbsp </p>
+                                <p class="h2" id="date"> Data dodania: ${notice.date} </p>
+                            </div>
+                        </div>
+                        <div class="tresc">
+                            <div>
+                                
+                                <h2 class="h2" id="title">${notice.title}</h2>
+                                <p id="contents">${notice.content}</p>
+                            </div>
+                            <div class="contact">
+                                <h2>Kontakt:<h2>
+                                    <p>Email: ${notice.email}
+                                    <br>Numer Telefonu: ${notice.phone}</p>
+                            </div>
+                            <div class="buttons" id="${notice._id}">
+
+                            </div>
+                        </div>
+                    </div>
+                    `;
+        }
+
+        const translateAndNormalizeNotice = (notice)=>{
+            const validNotice = {};
+            validNotice.title = notice.title;
+            validNotice.content = notice.content;
+            validNotice.email = notice.authorEmail;
+            validNotice.phone = notice.authorPhoneNumber;
+            validNotice._id = notice._id;
+            validNotice.author = notice.author;
+            
+            let adress = notice.adress;
+            if (notice.remote) adress = "Zdalnie";
+            validNotice.adress = adress;   
+
+            let price = notice.price;
+                switch(price){
+                    case "coverCost":
+                    validNotice.price = "Pokrycie kosztów";
+                        break;
+                    case "free":
+                    validNotice.price = "Za darmo";
+                        break;
+                    case "negotiated":
+                    validNotice.price = "Do uzgodnienia";
+                        break;
+                }
+
+            let type = notice.type;
+                switch(type){
+                    case "giveHelp":
+                    validNotice.type = "Chęć pomocy";
+                        break;
+                    case "needHelp":
+                    validNotice.type = "Prośba o pomoc";
+                        break;
+                }
+
+            let helps = "";
+                notice.helps.forEach(element=>{
+                    switch(element){
+                    case "shopping":
+                        helps += "Zakupy, "
+                        break;
+                    case "takingPetsOut":
+                        helps += "Wyprowadzanie Pupili, "
+                        break;
+                    case "tutoring":
+                        helps += "Korepetycje, "
+                        break;
+                    case "meal":
+                        helps += "Posiłek, "
+                        break;
+                    case "other":
+                        helps += "Inne, "
+                        break;
+                }});
+                validNotice.helps = helps.slice(0,-2);
+
+            const date = new Date(notice.creationDate);
+                validNotice.date = `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}` 
+
+            return validNotice;
+        }
+
+        const displayNotices = (notices)=>{
+            // ogłoszenia użytkownika
+            if (notices.user.length <= 0) {
+                userNoticesDiv.innerHTML += '<div class="brakOgloszen"><p>Nie opublikowałeś/aś jeszcze żadnego ogłoeszenia.</p></div>';
+            };
+
+            if (notices.user.length > 0){
+                userNoticesDiv.innerHTML += `<h2>Twoje ogłoszenia</h2>` 
+                console.log(notices);
+                notices.user.forEach(element=>{ 
+
+                    validNotice = translateAndNormalizeNotice(element);
+                    
+                    userNoticesDiv.innerHTML += generateHtmlNotice(validNotice);
+
+                    const buttons = document.querySelectorAll('.buttons');
+                    isSuspended = element.isSuspended;
+                    buttons.forEach(buttonsDiv =>{
+                        if (buttonsDiv.id == element._id) {
+                            if (isSuspended) buttonsDiv.innerHTML +=`<button class="susspend-btn" id="${element._id}">Wznów</button>`;
+                            else buttonsDiv.innerHTML +=`<button class="susspend-btn" id="${element._id}">Zawieś</button>`; 
+                            buttonsDiv.innerHTML += 
+                            `
+                            <button class="delete-btn" id="${element._id}">Usuń</button>
+                            <button class="edit-btn" id="${element._id}">Edytuj</button>
+                            
+                            `;
+                        }
+                    })
+                    
+                    document.querySelectorAll(".susspend-btn, .delete-btn, .edit-btn").forEach(element=>{
+                        element.addEventListener('click',(e)=>{
+                            const noticeId = e.target.id;
+                            const buttonClass = e.target.className;
+                            switch (buttonClass){
+                                case "susspend-btn":
+                                    console.log("dupa");
+                                    fetch(`/notices/suspendById?noticeId=${noticeId}`, { method: "PUT", }).then(res => res.json())
+                                        .then(data => {
+                                            if (data.success){
+                                                if(e.target.textContent === "Wznów") e.target.textContent = "Zawieś";
+                                                else e.target.textContent = "Wznów";
+                                                window.location.reload(true);
+                                            }
+                                        });
+                                    break;
+                                case "delete-btn":
+                                    fetch(`/notices/delete?noticeId=${noticeId}`, {method: "DELETE"}).then(res => res.json())
+                                        .then(data => {
+                                            if (data.success){
+                                                window.location.reload(true);
+                                            }
+                                        });
+                                    break;
+                                case "edit-btn":
+                                    window.location.href = (`/Page/noticeEditor?id=${noticeId}`);
+                                    break;
+                            }
+                        })
+                    })
                 });
+                
+            }
+        
+            // ogłoszenia nie użytkownika
+            if (notices.notUser.length > 0){
+                notices.notUser.forEach(element=>{
+
+                    validNotice = translateAndNormalizeNotice(element);
+
+                    noticesDiv.innerHTML += generateHtmlNotice(validNotice);
+                    
+                });
+            } else {
+                noticesDiv.innerHTML += '<div class="brakOgloszen"><p>Najwyraźniej wszyscy otrzymali już potrzebną im pomoc :)</p></div>';
             }
         };
 
@@ -144,10 +347,18 @@
                 });
         };
 
-        form.addEventListener("submit", e => {noticesDiv.innerHTML =""; getNotices(e)});
-        window.addEventListener("pageshow", e => {noticesDiv.innerHTML =""; getNotices(e)});
-        nextPage.addEventListener("click", e => {noticesDiv.innerHTML =""; page++; getNotices(e);});
-        lastPage.addEventListener("click", e => {noticesDiv.innerHTML =""; page--; getNotices(e);});
+        window.addEventListener("pageshow", e => {
+            fetch('/getUser').then(res => res.json()).then(data =>{
+                if(data){
+                window.location.href= "/notices-logged.html";
+                }
+            });
+            noticesDiv.innerHTML =""; 
+            userNoticesDiv.innerHTML=""; 
+            getNotices(e)});
+        form.addEventListener("submit", e => {noticesDiv.innerHTML =""; userNoticesDiv.innerHTML=""; getNotices(e)});
+        nextPage.addEventListener("click", e => {noticesDiv.innerHTML =""; userNoticesDiv.innerHTML=""; page++; getNotices(e);});
+        lastPage.addEventListener("click", e => {noticesDiv.innerHTML =""; userNoticesDiv.innerHTML=""; page--; getNotices(e);});
+
     </script>
-</body>
 </html>

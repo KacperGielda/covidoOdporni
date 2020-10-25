@@ -15,11 +15,10 @@
         <ul>
             <li><a href="home-logged">Strona główna</a></li>
             <li><a href="about-logged">O nas</a></li>
-            <li><a href="innaStrona">Ogłoszenia</a></li>
+            <li><a href="notices">Ogłoszenia</a></li>
             <li>Moje konto
                 <ol>
                     <li class="fix1"><a href="account">Informacje</a></li>
-                    <li><a href="">Powiadomienia</a></li>
                     <li><a href="/logout" id="logoutBtn">Wyloguj</a></li>
                 </ol>
             </li>  
@@ -73,6 +72,14 @@
         </svg>
     </footer>
     <script>
+    window.addEventListener('pageshow', ()=>{
+        fetch('/getUser').then(res => res.json()).then(data =>{
+          if(!data){
+            window.location.href= "/home";
+          }
+        });
+      });
+
         const profile = document.getElementById('profile');
         const noticesDiv = document.getElementById('notices');
         const name = document.getElementById('name');

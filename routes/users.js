@@ -21,7 +21,7 @@ router.post("/register", (req, res) => {
 });
 
 router.all("/login", (req, res, next) => {
-    if (req.session.user) res.redirect(403, "/Page/home-logged");
+    if (req.session.user) res.redirect(403, "/home-logged");
     next();
 });
 
@@ -29,7 +29,7 @@ router.post("/login", (req, res) => {
     usersController.logIn(req.body, (userID) => {
         if (userID) {
             req.session.user = userID;
-            res.redirect(301, "/Page/home-logged");
+            res.redirect(301, "home-logged");
         } else {
             res.json({ message: "Nieprawidłowe dane logowania" });
         }
@@ -50,7 +50,7 @@ router.get("/getUser", (req, res) => {
 router.get("/logout", (req, res) => {
     if (req.session.user) {
         req.session.user = null;
-        res.redirect("/Page/home");
+        res.redirect("/home");
     }
 });
 
@@ -66,7 +66,7 @@ router.put("/updateUser", (req, res) => {
             }
             usersController.updateUser(id, updatedData, user, (msg) => {
                 if (Object.keys(msg).length === 0) {
-                    res.redirect(301, "/Page/account");
+                    res.redirect(301, "/account");
                 } else {
                     res.json(msg);
                 }
@@ -87,7 +87,7 @@ router.delete("/deleteUser", (req, res) => {
             usersController.deleteUser(id, (isDeleted) => {
                 if (isDeleted) {
                     req.session.user = null;
-                    res.redirect("Page/home");
+                    res.redirect("/home");
                 } else {
                     res.json({ msg: "Nie udało się usunąć uzytkownika" });
                 }

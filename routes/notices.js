@@ -68,7 +68,7 @@ router.put("/suspendById", (req, res) => {
             noticesController.susspend(noticeId, (msg) => {
                 res.json(msg);
             });
-        } else res.redirect(403, "/index");
+        } else res.redirect(403, "/home");
     });
 });
 
@@ -80,7 +80,7 @@ router.put("/update", (req, res) => {
                 if (Object.keys(msg).length > 0) res.json(msg);
                 else res.redirect(301, "/profile");
             });
-        } else res.redirect(403, "/index");
+        } else res.redirect(403, "/home");
     });
 });
 
@@ -94,7 +94,7 @@ router.delete("/delete", (req, res) => {
                 }
                 res.json({ success });
             });
-        } else res.redirect(403, "/index");
+        } else res.redirect(403, "/home");
     });
 });
 module.exports = router;
