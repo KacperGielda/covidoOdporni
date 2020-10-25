@@ -4,7 +4,7 @@ const cookieParser = require("cookie-parser");
 const cookieSession = require("cookie-session");
 const path = require("path");
 
-//const config = require("./config");
+const config = require("./config") || {};
 
 const app = express();
 
@@ -27,7 +27,6 @@ app.use(
     })
 );
 
-app.use("/", require(path.join(__dirname, "routes", "index")));
 app.use("/", require(path.join(__dirname, "routes", "users")));
 app.use("/notices", require(path.join(__dirname, "routes", "notices")));
 

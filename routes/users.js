@@ -1,6 +1,7 @@
+const path = require("path");
 const express = require("express");
-const usersController = require("../controllers/UsersController.js");
-const noticesController = require("../controllers/noticesController.js");
+const usersController = require(path.join(__dirname, "..", "controllers", "usersController"));
+const noticesController = require(path.join(__dirname, "..", "controllers", "noticesController"));
 const router = express.Router();
 
 router.all("/register", (req, res, next) => {
