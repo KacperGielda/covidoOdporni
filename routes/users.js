@@ -13,7 +13,7 @@ router.post("/register", (req, res) => {
     usersController.createUser(req.body, (newUserID, msg) => {
         if (Object.keys(msg).length === 0) {
             req.session.user = newUserID;
-            res.redirect(301, "/Page/home-logged");
+            res.redirect(301, "/home-logged");
         } else {
             res.json(msg);
         }
