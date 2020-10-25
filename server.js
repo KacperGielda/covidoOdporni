@@ -4,7 +4,7 @@ const cookieParser = require("cookie-parser");
 const cookieSession = require("cookie-session");
 const path = require("path");
 
-const config = require("./config");
+//const config = require("./config");
 
 const app = express();
 
