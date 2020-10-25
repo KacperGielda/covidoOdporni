@@ -1,6 +1,6 @@
 const path = require("path");
 const noticesCreator = require(path.join(__dirname, "..", "creators", "noticesCreator"));
-const usersController = require(path.join(__dirname, "..", "controllers", "usersController"));
+const usersController = require(path.join(__dirname, "..", "controllers", "UsersController"));
 const mongoose = require("mongoose");
 
 const filterNotice = (notice) => {

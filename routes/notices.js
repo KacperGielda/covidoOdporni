@@ -1,6 +1,6 @@
 const path = require("path");
 const express = require("express");
-const usersController = require(path.join(__dirname, "..", "controllers", "usersController"));
+const usersController = require(path.join(__dirname, "..", "controllers", "UsersController"));
 const noticesController = require(path.join(__dirname, "..", "controllers", "noticesController"));
 const router = express.Router();
 
