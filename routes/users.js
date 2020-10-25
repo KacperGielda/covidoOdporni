@@ -5,7 +5,7 @@ const noticesController = require(path.join(__dirname, "..", "controllers", "not
 const router = express.Router();
 
 router.all("/register", (req, res, next) => {
-    if (req.session.user) res.redirect(403, "/Page/home-logged");
+    if (req.session.user) res.redirect(403, "/home-logged");
     next();
 });
 

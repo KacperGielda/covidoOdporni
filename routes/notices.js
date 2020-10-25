@@ -49,7 +49,7 @@ router.post("/add", (req, res) => {
             }
             noticesController.createNotice(noticeData, (msg) => {
                 if (Object.keys(msg).length === 0) {
-                    res.redirect(301, "/profile");
+                    res.redirect(301, "/account");
                 } else res.json(msg);
             });
         });
