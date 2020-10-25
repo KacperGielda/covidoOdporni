@@ -41,6 +41,8 @@ router.post("/add", (req, res) => {
                     noticeData.adress = user.adress;
                     break;
             }
+            noticeData.authorEmail = user.email;
+            noticeData.authorPhoneNumber = user.phoneNumber;
             if (!noticeData.helps) {
                 noticeData.helps = ["other"];
             }
