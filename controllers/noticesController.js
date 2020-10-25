@@ -75,10 +75,10 @@ module.exports = {
             );
         });
     },
-    getPages: (filters, callback) => {
+    getPages: (userFilters, callback) => {
         const model = noticesCreator.model;
-        console.log(filters);
-        model.countDocuments({}, (err, counter) => {
+        filters = makeFilters(userFilters);
+        model.countDocuments(filters, (err, counter) => {
             callback(Math.ceil(counter / 10));
         });
     },
