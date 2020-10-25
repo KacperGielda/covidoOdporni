@@ -10,7 +10,7 @@ const app = express();
 
 mongoose.set("useCreateIndex", true);
 db = mongoose
-    .connect(config.database, {
+    .connect(process.env.database || config.database, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
@@ -21,9 +21,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(
     cookieSession({
-        name: config.sessionName,
-        secret: config.sessionSecret,
-        maxAge: config.sessionMaxAge,
+        name: process.env.sessionName || config.sessionName,
+        secret: process.env.sessionSecret || config.sessionSecret,
+        maxAge: process.env.sessionMaxAge || config.sessionMaxAge,
     })
 );
 
