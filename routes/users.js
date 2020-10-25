@@ -1,10 +1,10 @@
 const express = require("express");
-const usersController = require("../controllers/UsersController");
-const noticesController = require("../controllers/noticesController");
+const usersController = require("../controllers/UsersController.js");
+const noticesController = require("../controllers/noticesController.js");
 const router = express.Router();
 
-router.all('/register', (req, res, next) =>{
-    if (req.session.user) res.redirect(403,'/Page/home-logged');
+router.all("/register", (req, res, next) => {
+    if (req.session.user) res.redirect(403, "/Page/home-logged");
     next();
 });
 
@@ -19,8 +19,8 @@ router.post("/register", (req, res) => {
     });
 });
 
-router.all('/login', (req, res, next) =>{
-    if (req.session.user) res.redirect(403,'/Page/home-logged');
+router.all("/login", (req, res, next) => {
+    if (req.session.user) res.redirect(403, "/Page/home-logged");
     next();
 });
 
@@ -29,9 +29,8 @@ router.post("/login", (req, res) => {
         if (userID) {
             req.session.user = userID;
             res.redirect(301, "/Page/home-logged");
-        }
-        else{
-            res.json({message: "Nieprawidłowe dane logowania"})
+        } else {
+            res.json({ message: "Nieprawidłowe dane logowania" });
         }
     });
 });
@@ -47,10 +46,9 @@ router.get("/getUser", (req, res) => {
     }
 });
 
-
-router.get("/logout", (req, res)=>{
-    if (req.session.user){
-        req.session.user=null;
+router.get("/logout", (req, res) => {
+    if (req.session.user) {
+        req.session.user = null;
         res.redirect("/Page/home");
     }
 });
@@ -68,7 +66,7 @@ router.put("/updateUser", (req, res) => {
             usersController.updateUser(id, updatedData, user, (msg) => {
                 if (Object.keys(msg).length === 0) {
                     res.redirect(301, "/Page/account");
-                } else {;
+                } else {
                     res.json(msg);
                 }
             });

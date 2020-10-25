@@ -1,5 +1,5 @@
-const noticesCreator = require("../creators/noticesCreator");
-const usersController = require("./usersController");
+const noticesCreator = require("../creators/noticesCreator.js");
+const usersController = require("./usersController.js");
 const mongoose = require("mongoose");
 
 const filterNotice = (notice) => {

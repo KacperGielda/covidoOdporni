@@ -1,6 +1,6 @@
 const express = require("express");
-const usersController = require("../controllers/UsersController");
-const noticesController = require("../controllers/noticesController");
+const usersController = require("../controllers/UsersController.js");
+const noticesController = require("../controllers/noticesController.js");
 const router = express.Router();
 
 const belongsToUser = (userId, noticeId, callback) => {
