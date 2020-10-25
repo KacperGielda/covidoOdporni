@@ -1,391 +1,320 @@
 html {
-    height: 100%;
+  height: 100%;
 }
 
 body {
-    position: relative;
-    min-height: 100%;
-    background-color: rgb(184, 184, 184);
-    margin: 0 auto;
-    font-family: "segoe UI";
-}
-
-/*   elementy nagłówka    */
-
-header {
-    position: fixed;
-    display: inline-block;
-    width: 100%;
-    /*    height: 101px;   */
-    background-color: white;
-    color: #707070;
-    box-shadow: 0px 3px 1px #707070;
-}
-
-header p {
-    font-size: 200%;
-    width: fit-content;
-    height: fit-content;
-    float: left;
-    margin: 0px;
-    padding: 29px;
-}
-
-ul {
-    display: block;
-    list-style-type: none;
-    font-size: 20px;
-    text-align: center;
-    float: right;
-    margin: 0;
-    padding: 0;
-}
-
-ul li {
-    float: left;
-    padding: 37px;
-    height: fit-content;
-}
-
-ul li a {
-    display: block;
-    color: #707070;
-    text-decoration: none;
-}
-
-.aktualne {
-    box-shadow: 0px 5px 0px 0px #5f5f5f;
-}
-
-ul li:hover {
-    background-color: #e2e2e2;
-}
-
-ul li ol {
-    display: block;
-    display: none;
-    position: absolute;
-    background-color: white;
-    list-style-type: none;
-    width: 108px;
-    padding: 0;
-    margin: 0;
-}
-
-ul li:hover ol {
-    display: block;
-}
-
-ol li {
-    padding: 16px 0;
-    width: 108px;
-    font-size: initial;
-}
-
-.fix1 {
-    padding-top: 40px;
-}
-
-ol li:hover {
-    box-shadow: none;
+  position: relative;
+  min-height: 100%;
+  background-color: rgb(184, 184, 184);
+  margin: 0 auto;
+  font-family: "segoe UI";
 }
 
 /*    główny panel - ogłoszenia    */
 
 main {
-    display: flex;
-    height: 100%;
-    padding-top: 101px;
-    color: #606060;
+  display: flex;
+  height: 100%;
+  padding-top: 101px;
+  color: #606060;
+}
+
+/* Elementy nagłówka */
+
+ol li {
+  background-color: white;
+  padding: 16px 0;
+  width: 200px;
+  font-size: initial;
 }
 
 /*    filt(e?)r    */
 aside {
-    width: 20%;
-    height: fit-content;
-    background-color: white;
-    border-bottom-right-radius: 5px;
-    border-width: -1px;
-    border-right-style: solid;
-    border-bottom-style: solid;
+  width: 20%;
+  height: fit-content;
+  background-color: white;
+  border-bottom-right-radius: 5px;
+  border-width: -1px;
+  border-right-style: solid;
+  border-bottom-style: solid;
 }
 
 form {
-    margin-left: 15px;
+  margin-left: 15px;
 }
 
 form p {
-    margin: 15px 10px;
-    font-size: 30px;
+  margin: 15px 10px;
+  font-size: 30px;
 }
 
 select {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 label {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 input {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 .filter-btn {
-    width: 100px;
-    height: 35px;
-    border: none;
-    border-radius: 10px;
-    outline: none;
-    font-size: 22px;
-    color: white;
-    background: #3734a2;
-    cursor: pointer;
-    margin: 15px;
+  width: 100px;
+  height: 35px;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  font-size: 22px;
+  color: white;
+  background: #3734a2;
+  cursor: pointer;
+  margin: 15px;
 }
 
 /*    same ogłoszenia    */
 article {
-    background-color: white;
-    width: 60%;
-    min-height: 100%;
-    margin: 0 auto;
-    padding-bottom: 50px;
-    box-shadow: 0 0 5px 5px #707070;
+  background-color: white;
+  width: 60%;
+  min-height: 100%;
+  margin: 0 auto;
+  padding-bottom: 50px;
+  box-shadow: 0 0 5px 5px #707070;
 }
 
 .notice-select {
-    width: 100%;
-    height: 80px;
-    font-size: 30px;
-    display: flex;
+  width: 100%;
+  height: 80px;
+  font-size: 30px;
+  display: flex;
 }
 
 .notice-select div {
-    text-align: center;
+  text-align: center;
 }
 
 .notice-select div p {
-    margin: 0;
-    padding: 20px 0;
-    height: 50%;
-    width: 100%;
+  margin: 0;
+  padding: 20px 0;
+  height: 50%;
+  width: 100%;
 }
 
 .notice-select div a {
-    text-decoration: none;
-    color: #606060;
+  text-decoration: none;
+  color: #606060;
 }
 
 .all-notices-selected {
-    display: block;
-    width: 50%;
+  display: block;
+  width: 50%;
 }
 
 .all-notices-select {
-    display: block;
-    width: 50%;
-    border-right-style: solid;
-    border-bottom-style: solid;
-    border-width: -1px;
-    border-bottom-right-radius: 5px;
-    background-color: #dadada;
-    box-shadow: inset -1px -1px 2px 1px #707070;
+  display: block;
+  width: 50%;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-width: -1px;
+  border-bottom-right-radius: 5px;
+  background-color: #dadada;
+  box-shadow: inset -1px -1px 2px 1px #707070;
 }
 
 .user-notices-selected {
-    display: block;
-    width: 50%;
+  display: block;
+  width: 50%;
 }
 
 .user-notices-select {
-    display: block;
-    width: 50%;
-    border-left-style: solid;
-    border-bottom-style: solid;
-    border-width: -1px;
-    border-bottom-left-radius: 5px;
-    background-color: #dadada;
-    box-shadow: inset 1px -1px 2px 1px #707070;
+  display: block;
+  width: 50%;
+  border-left-style: solid;
+  border-bottom-style: solid;
+  border-width: -1px;
+  border-bottom-left-radius: 5px;
+  background-color: #dadada;
+  box-shadow: inset 1px -1px 2px 1px #707070;
 }
 
 .all-notices-select:hover,
 .user-notices-select:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 #user-notices {
-    display: none;
+  display: none;
 }
 
 #notices {
-    display: block;
-    width: 100%;
-    height: fit-content;
+  display: block;
+  width: 100%;
+  height: fit-content;
 }
 
 /*    gdy nie ma ogloszen    */
 .brakOgloszen {
-    width: 96%;
-    height: fit-content;
-    margin: 20px 2%;
-    background-color: #b8e2ab;
-    border-style: solid;
-    border-radius: 8px;
-    border-color: #7cbb69;
-    text-align: center;
+  width: 96%;
+  height: fit-content;
+  margin: 20px 2%;
+  background-color: #b8e2ab;
+  border-style: solid;
+  border-radius: 8px;
+  border-color: #7cbb69;
+  text-align: center;
 }
 
 .brakOgloszen p {
-    padding: 15px 0;
+  padding: 15px 0;
 }
 /*    gdy są ogłoszenia    */
 .ogloszenie {
-    width: 96%;
-    margin: 20px 2%;
-    background-color: #fafafa;
-    border-style: solid;
-    border-radius: 8px;
-    border-color: #707070;
-    overflow: hidden;
+  width: 96%;
+  margin: 20px 2%;
+  background-color: #fafafa;
+  border-style: solid;
+  border-radius: 8px;
+  border-color: #707070;
+  overflow: hidden;
 }
 
 .tresc {
-    width: 96%;
-    height: fit-content;
-    padding: 0 2% 0 2%;
-    float: left;
+  width: 96%;
+  height: fit-content;
+  padding: 0 2% 0 2%;
+  float: left;
 }
 
 .tresc p {
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 0;
 }
 
 .info {
-    width: 96%;
-    height: fit-content;
-    padding: 0 2% 0 2%;
-    border-bottom-style: solid;
-    border-width: 1px;
+  width: 96%;
+  height: fit-content;
+  padding: 0 2% 0 2%;
+  border-bottom-style: solid;
+  border-width: 1px;
 }
 
 .edit-btn,
 .susspend-btn {
-    width: 180px;
-    height: 35px;
-    border: none;
-    border-radius: 10px;
-    outline: none;
-    font-size: 22px;
-    color: white;
-    background: #3734a2;
-    cursor: pointer;
-    float: right;
-    vertical-align: bottom;
+  width: 180px;
+  height: 35px;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  font-size: 22px;
+  color: white;
+  background: #3734a2;
+  cursor: pointer;
+  float: right;
+  vertical-align: bottom;
 }
 
 .edit-btn:hover,
 .susspend-btn:hover {
-    background: #42419c;
+  background: #42419c;
 }
 
 .delete-btn {
-    width: 180px;
-    height: 35px;
-    border: none;
-    border-radius: 10px;
-    outline: none;
-    font-size: 22px;
-    color: white;
-    background: red;
-    cursor: pointer;
-    margin-right: 0;
-    float: right;
+  width: 180px;
+  height: 35px;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  font-size: 22px;
+  color: white;
+  background: red;
+  cursor: pointer;
+  margin-right: 0;
+  float: right;
 }
 
 .edit-btn,
 .susspend-btn,
 .delete-btn {
-    margin-right: 15px;
+  margin-right: 15px;
 }
 
 .delete-btn:hover {
-    background: rgb(233, 0, 0);
+  background: rgb(233, 0, 0);
 }
 
 .dane1 {
-    display: flex;
-    margin-bottom: 5px;
+  display: flex;
+  margin-bottom: 5px;
 }
 .h2 {
-    display: block;
-    width: fit-content;
-    margin: 0;
+  display: block;
+  width: fit-content;
+  margin: 0;
 }
 
 .buttons {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 50%;
-    margin: 15px;
-    margin-left: 0px;
-    margin-right: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 50%;
+  margin: 15px;
+  margin-left: 0px;
+  margin-right: 100%;
 }
 
 .contact h2 {
-    margin: 5px;
-    font-size: 25px;
+  margin: 5px;
+  font-size: 25px;
 }
 .contact p {
-    margin-top: 0;
-    font-weight: normal;
-    font-size: 20px;
+  margin-top: 0;
+  font-weight: normal;
+  font-size: 20px;
 }
 
 #user-notices h2,
 #notices h2 {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 .navigation {
-    width: 100%;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-self: start;
-    justify-content: center;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-self: start;
+  justify-content: center;
 }
 
 .navigation-arrows {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .lastPage,
 .nextPage {
-    border: #3734a2 2px solid;
-    border-radius: 10px;
-    color: #3734a2;
-    padding: 10px;
-    margin: 10px;
+  border: #3734a2 2px solid;
+  border-radius: 10px;
+  color: #3734a2;
+  padding: 10px;
+  margin: 10px;
 }
 .lastPage:hover,
 .nextPage:hover {
-    color: #707070;
-    cursor: pointer;
+  color: #707070;
+  cursor: pointer;
 }
 
 .addNotice {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: red !important;
-    color: white !important;
-    width: 230px;
-    padding: 5px;
-    margin-top: -5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: red !important;
+  color: white !important;
+  width: 230px;
+  padding: 5px;
+  margin-top: -5px;
 }
